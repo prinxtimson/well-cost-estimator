@@ -16,3 +16,32 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware(['guest'])->group(function () {
+    //
+    //Route::post('/login', [LoginController::class, 'authenticate']);
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
+
+    Route::get('login', function () {
+        return view('welcome');
+    })->name('login');
+
+    Route::get('register', function () {
+        return view('welcome');
+    })->name('register');
+
+    Route::get('reset-password/{token}', function () {
+        return view('welcome');
+    })->name('password.reset');
+
+    Route::get('forgot-password', function () {
+        return view('welcome');
+    })->name('password.forgot');
+
+    // Route::post('/login', [AuthController::class, 'login']);
+    // Route::post('password/email', [AuthController::class, 'forgotPass']);
+    // Route::post('password/update', [AuthController::class, 'resetPass']);
+
+});
