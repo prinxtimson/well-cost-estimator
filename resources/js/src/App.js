@@ -10,6 +10,7 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import DashboardPage from "./pages/DashboardPage";
 
 const App = () => {
     const [auth, setAuth] = useState(store.getState().auth);
@@ -21,6 +22,7 @@ const App = () => {
             <Router>
                 <Routes>
                     <Route exact path="/" element={<HomePage />} />
+                    <Route exact path="dashboard" element={<DashboardPage />} />
                     <Route exact path="login" element={<LoginPage />} />
                     <Route
                         exact

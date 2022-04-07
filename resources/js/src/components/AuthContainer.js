@@ -16,8 +16,8 @@ import Copyright from "./Copyright";
 const theme = createTheme({
     palette: {
         background: {
-            default: blue["A700"],
-            paper: blue["A700"],
+            default: blue[800],
+            paper: blue[800],
         },
     },
 });

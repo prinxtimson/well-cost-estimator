@@ -32,6 +32,10 @@ Route::middleware(['guest'])->group(function () {
         return view('welcome');
     })->name('register');
 
+    Route::get('dashboard', function () {
+        return view('welcome');
+    })->name('dashboard');
+
     Route::get('reset-password/{token}', function () {
         return view('welcome');
     })->name('password.reset');
