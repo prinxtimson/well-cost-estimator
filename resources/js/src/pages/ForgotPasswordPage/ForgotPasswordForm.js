@@ -1,13 +1,11 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
 import AuthContainer from "../../components/AuthContainer";
+import CustomButton from "../../components/CustomButton";
 
 const ForgotPasswordForm = ({ loading }) => {
     const [data, setData] = React.useState({});
@@ -17,7 +15,7 @@ const ForgotPasswordForm = ({ loading }) => {
         <AuthContainer>
             <Box
                 sx={{
-                    marginTop: 8,
+                    marginTop: 5,
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
@@ -26,6 +24,9 @@ const ForgotPasswordForm = ({ loading }) => {
                     borderRadius: 1,
                 }}
             >
+                <Box sx={{ mb: 2 }}>
+                    <Typography>Request Reset Password</Typography>
+                </Box>
                 <Box
                     component="form"
                     onSubmit={handleSubmit}
@@ -42,7 +43,7 @@ const ForgotPasswordForm = ({ loading }) => {
                         autoComplete="email"
                         autoFocus
                     />
-                    <Button
+                    <CustomButton
                         type="submit"
                         fullWidth
                         size="large"
@@ -51,7 +52,7 @@ const ForgotPasswordForm = ({ loading }) => {
                         disabled={loading}
                     >
                         Request Reset
-                    </Button>
+                    </CustomButton>
                     <Box
                         sx={{
                             marginTop: 4,

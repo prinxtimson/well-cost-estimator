@@ -1,18 +1,14 @@
 import React from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 import { Link } from "react-router-dom";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 
 import AuthContainer from "../../components/AuthContainer";
+import CustomButton from "../../components/CustomButton";
 
 const LoginForm = ({ loading }) => {
     const [data, setData] = React.useState({});
@@ -22,7 +18,7 @@ const LoginForm = ({ loading }) => {
         <AuthContainer>
             <Box
                 sx={{
-                    marginTop: 8,
+                    marginTop: 5,
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
@@ -31,6 +27,9 @@ const LoginForm = ({ loading }) => {
                     borderRadius: 1,
                 }}
             >
+                <Box sx={{ mb: 2 }}>
+                    <Typography>Account Login</Typography>
+                </Box>
                 <Box
                     component="form"
                     onSubmit={handleSubmit}
@@ -61,7 +60,7 @@ const LoginForm = ({ loading }) => {
                         control={<Checkbox value="remember" color="primary" />}
                         label="Remember me"
                     />
-                    <Button
+                    <CustomButton
                         type="submit"
                         fullWidth
                         variant="contained"
@@ -70,7 +69,7 @@ const LoginForm = ({ loading }) => {
                         disabled={loading}
                     >
                         Login
-                    </Button>
+                    </CustomButton>
                     <Grid container>
                         <Grid item xs>
                             <Link to="/forgot-password" variant="body2">

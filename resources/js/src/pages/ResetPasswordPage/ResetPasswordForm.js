@@ -1,13 +1,11 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
 import AuthContainer from "../../components/AuthContainer";
+import CustomButton from "../../components/CustomButton";
 
 const ResetPasswordForm = ({ loading }) => {
     const [data, setData] = React.useState({});
@@ -17,7 +15,7 @@ const ResetPasswordForm = ({ loading }) => {
         <AuthContainer>
             <Box
                 sx={{
-                    marginTop: 8,
+                    marginTop: 5,
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
@@ -26,6 +24,9 @@ const ResetPasswordForm = ({ loading }) => {
                     borderRadius: 1,
                 }}
             >
+                <Box sx={{ mb: 2 }}>
+                    <Typography>Reset Password</Typography>
+                </Box>
                 <Box
                     component="form"
                     onSubmit={handleSubmit}
@@ -50,7 +51,7 @@ const ResetPasswordForm = ({ loading }) => {
                         type="password"
                         id="password-confirmation"
                     />
-                    <Button
+                    <CustomButton
                         type="submit"
                         fullWidth
                         variant="contained"
@@ -59,7 +60,7 @@ const ResetPasswordForm = ({ loading }) => {
                         disabled={loading}
                     >
                         Change Password
-                    </Button>
+                    </CustomButton>
                 </Box>
             </Box>
         </AuthContainer>

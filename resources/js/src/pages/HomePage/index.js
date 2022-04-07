@@ -1,10 +1,12 @@
 import React from "react";
 
+import MainContainer from "../../components/MainContainer";
+
 const index = () => {
     return (
-        <div>
+        <MainContainer>
             <h1>Home</h1>
-        </div>
+        </MainContainer>
     );
 };
 

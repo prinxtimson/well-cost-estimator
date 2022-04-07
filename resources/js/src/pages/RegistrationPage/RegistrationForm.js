@@ -1,13 +1,11 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
 
 import AuthContainer from "../../components/AuthContainer";
+import CustomButton from "../../components/CustomButton";
 
 const RegistrationForm = ({ loading }) => {
     const [data, setData] = React.useState({});
@@ -17,7 +15,7 @@ const RegistrationForm = ({ loading }) => {
         <AuthContainer>
             <Box
                 sx={{
-                    marginTop: 8,
+                    marginTop: 5,
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
@@ -26,6 +24,9 @@ const RegistrationForm = ({ loading }) => {
                     borderRadius: 1,
                 }}
             >
+                <Box sx={{ mb: 2 }}>
+                    <Typography>Create Account</Typography>
+                </Box>
                 <Box
                     component="form"
                     onSubmit={handleSubmit}
@@ -80,7 +81,7 @@ const RegistrationForm = ({ loading }) => {
                         id="password-confirmation"
                         autoComplete="current-password"
                     />
-                    <Button
+                    <CustomButton
                         type="submit"
                         fullWidth
                         variant="contained"
@@ -89,7 +90,7 @@ const RegistrationForm = ({ loading }) => {
                         disabled={loading}
                     >
                         Create Account
-                    </Button>
+                    </CustomButton>
                     <Box>
                         <Typography>
                             By clicking the “Create Account” button, you agree
