@@ -7,7 +7,6 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { blue } from "@mui/material/colors";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -16,8 +15,8 @@ import Copyright from "./Copyright";
 const theme = createTheme({
     palette: {
         background: {
-            default: blue[800],
-            paper: blue[800],
+            default: "#f5f8fb",
+            paper: "#f5f8fb",
         },
     },
 });
