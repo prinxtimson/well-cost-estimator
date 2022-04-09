@@ -4,15 +4,10 @@ import Typography from "@mui/material/Typography";
 
 const Copyright = (props) => {
     return (
-        <Typography
-            variant="body2"
-            color="text.secondary"
-            align="center"
-            {...props}
-        >
+        <Typography variant="body2" align="center" {...props}>
             {"Copyright © "}
-            <Link color="inherit" href="#">
-                Well Cost
+            <Link color="inherit" href="/">
+                Well Cost Estimator
             </Link>{" "}
             {new Date().getFullYear()}
             {"."}

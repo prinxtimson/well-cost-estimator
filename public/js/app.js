@@ -34110,13 +34110,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var Copyright = function Copyright(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_2__["default"], _objectSpread(_objectSpread({
     variant: "body2",
-    color: "text.secondary",
     align: "center"
   }, props), {}, {
     children: ["Copyright © ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_mui_material_Link__WEBPACK_IMPORTED_MODULE_3__["default"], {
       color: "inherit",
-      href: "#",
-      children: "Well Cost"
+      href: "/",
+      children: "Well Cost Estimator"
     }), " ", new Date().getFullYear(), "."]
   }));
 };
@@ -34694,6 +34693,14 @@ var MainContainer = function MainContainer(_ref) {
       component: "main",
       maxWidth: false,
       disableGutters: true,
+      sx: {
+        backgroundImage: "url(\"/images/oil_rig_2.webp\")",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        display: "flex",
+        flexDirection: "column"
+      },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_MainHeader__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_mui_material_Stack__WEBPACK_IMPORTED_MODULE_9__["default"], {
         sx: {
           width: "100%"
@@ -34718,12 +34725,16 @@ var MainContainer = function MainContainer(_ref) {
           }, alert.id);
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_mui_material_Container__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        sx: {
+          flexGrow: 1
+        },
         children: children
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Copyright__WEBPACK_IMPORTED_MODULE_2__["default"], {
         sx: {
           mt: 8,
           mb: 4
-        }
+        },
+        color: "#ffffff"
       })]
     })]
   });
@@ -34809,7 +34820,7 @@ var MainHeader = function MainHeader() {
             noWrap: true,
             component: "div",
             sx: {
-              color: "#000089"
+              color: "#fff"
             },
             children: "Well Cost Estimator"
           })]
@@ -34831,12 +34842,17 @@ var MainHeader = function MainHeader() {
               //onClick={handleCloseNavMenu}
               style: {
                 my: 2,
-                color: "#000089",
+                color: "#fff",
                 display: "block",
                 margin: "0 10px"
               },
               to: page.url,
-              children: page.text
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                variant: "div",
+                component: "h6",
+                fontSize: 15,
+                children: page.text
+              })
             }, page.text);
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
             to: "/register",
@@ -35288,16 +35304,55 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _mui_material_Box__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material/Box */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _mui_material_Grid__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Grid */ "./node_modules/@mui/material/Grid/Grid.js");
+/* harmony import */ var _mui_material_Typography__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/Typography */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var _components_MainContainer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/MainContainer */ "./resources/js/src/components/MainContainer.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _components_CustomButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/CustomButton */ "./resources/js/src/components/CustomButton.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
 
 
 
 
 var index = function index() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_MainContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
-      children: "Home"
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_MainContainer__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      container: true,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        item: true,
+        md: true,
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          variant: "h2",
+          component: "h6",
+          color: "#fff",
+          fontWeight: 900,
+          children: "Welcome to Well Cost Estimator"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          sx: {
+            marginTop: 3,
+            maxWidth: 300
+          },
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+            to: "/register",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_CustomButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
+              variant: "contained",
+              fullWidth: true,
+              size: "large",
+              children: "Get Started"
+            })
+          })
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Grid__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        item: true,
+        md: true
+      })]
     })
   });
 };

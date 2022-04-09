@@ -32,7 +32,7 @@ const MainHeader = () => {
                             variant="h6"
                             noWrap
                             component="div"
-                            sx={{ color: "#000089" }}
+                            sx={{ color: "#fff" }}
                         >
                             Well Cost Estimator
                         </Typography>
@@ -51,13 +51,19 @@ const MainHeader = () => {
                                 //onClick={handleCloseNavMenu}
                                 style={{
                                     my: 2,
-                                    color: "#000089",
+                                    color: "#fff",
                                     display: "block",
                                     margin: "0 10px",
                                 }}
                                 to={page.url}
                             >
-                                {page.text}
+                                <Typography
+                                    variant="div"
+                                    component="h6"
+                                    fontSize={15}
+                                >
+                                    {page.text}
+                                </Typography>
                             </Link>
                         ))}
                         <Link to="/register">

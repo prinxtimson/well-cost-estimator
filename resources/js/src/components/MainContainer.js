@@ -16,7 +16,19 @@ const MainContainer = ({ children, alerts }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Container component="main" maxWidth={false} disableGutters={true}>
+            <Container
+                component="main"
+                maxWidth={false}
+                disableGutters={true}
+                sx={{
+                    backgroundImage: `url("/images/oil_rig_2.webp")`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    display: "flex",
+                    flexDirection: "column",
+                }}
+            >
                 <MainHeader />
                 <Stack sx={{ width: "100%" }} spacing={2}>
                     {alerts.map((alert) => (
@@ -39,8 +51,8 @@ const MainContainer = ({ children, alerts }) => {
                         </Snackbar>
                     ))}
                 </Stack>
-                <Container>{children}</Container>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
+                <Container sx={{ flexGrow: 1 }}>{children}</Container>
+                <Copyright sx={{ mt: 8, mb: 4 }} color="#ffffff" />
             </Container>
         </ThemeProvider>
     );
