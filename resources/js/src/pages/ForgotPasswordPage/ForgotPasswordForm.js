@@ -7,9 +7,18 @@ import Typography from "@mui/material/Typography";
 import AuthContainer from "../../components/AuthContainer";
 import CustomButton from "../../components/CustomButton";
 
-const ForgotPasswordForm = ({ loading }) => {
-    const [data, setData] = React.useState({});
-    const handleSubmit = () => {};
+import { connect } from "react-redux";
+import { requestPasswordReset } from "../../actions/auth";
+
+const ForgotPasswordForm = ({ loading, requestPasswordReset }) => {
+    const [email, setEmail] = React.useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        requestPasswordReset(email, handleOnSuccessful);
+    };
+
+    const handleOnSuccessful = () => setEmail("");
 
     return (
         <AuthContainer>
@@ -37,11 +46,13 @@ const ForgotPasswordForm = ({ loading }) => {
                         margin="dense"
                         required
                         fullWidth
+                        value={email}
                         id="email"
                         label="Email Address"
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                     <CustomButton
                         type="submit"
@@ -60,7 +71,11 @@ const ForgotPasswordForm = ({ loading }) => {
                     >
                         <Typography textAlign="center">
                             Remember password?{" "}
-                            <Link to="/login" variant="body2">
+                            <Link
+                                to="/login"
+                                variant="body2"
+                                style={{ color: "#155fcc" }}
+                            >
                                 Sign in
                             </Link>
                         </Typography>
@@ -71,4 +86,10 @@ const ForgotPasswordForm = ({ loading }) => {
     );
 };
 
-export default ForgotPasswordForm;
+const mapStateToProps = (state) => ({
+    loading: state.auth.loading,
+});
+
+export default connect(mapStateToProps, { requestPasswordReset })(
+    ForgotPasswordForm
+);

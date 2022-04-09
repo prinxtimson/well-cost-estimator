@@ -22,7 +22,7 @@ const theme = createTheme({
     },
 });
 
-const AuthContainer = ({ children, alerts = [] }) => {
+const AuthContainer = ({ children, alerts }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -73,4 +73,8 @@ const AuthContainer = ({ children, alerts = [] }) => {
     );
 };
 
-export default AuthContainer;
+const mapStateToProps = (state) => ({
+    alerts: state.alert,
+});
+
+export default connect(mapStateToProps)(AuthContainer);

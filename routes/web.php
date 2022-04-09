@@ -32,10 +32,6 @@ Route::middleware(['guest'])->group(function () {
         return view('welcome');
     })->name('register');
 
-    Route::get('dashboard', function () {
-        return view('welcome');
-    })->name('dashboard');
-
     Route::get('reset-password/{token}', function () {
         return view('welcome');
     })->name('password.reset');
@@ -48,4 +44,24 @@ Route::middleware(['guest'])->group(function () {
     // Route::post('password/email', [AuthController::class, 'forgotPass']);
     // Route::post('password/update', [AuthController::class, 'resetPass']);
 
+});
+
+Route::middleware(['auth'])->group(function () {
+    // Route::put('change-password', [AuthController::class, 'changePass']);
+    // Route::post('logout', [AuthController::class, 'logout']);
+    Route::get('change-password', function () {
+        return view('welcome');
+    });
+    Route::get('profile', function () {
+        return view('welcome');
+    });
+    Route::get('dashboard', function () {
+        return view('welcome');
+    })->name('dashboard');
+    Route::get('dashboard/{name?}', function () {
+        return view('welcome');
+    })->name('dashboard');
+    // Route::get('subscribe/{plan}', function () {
+    //     return view('welcome');
+    // });
 });

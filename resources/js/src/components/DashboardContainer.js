@@ -14,8 +14,6 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Avatar from "@mui/material/Avatar";
@@ -33,12 +31,18 @@ import { blue } from "@mui/material/colors";
 import { Link } from "react-router-dom";
 
 import Copyright from "./Copyright";
+import DashboardMenu from "./DashboardMenu";
+
+import { connect } from "react-redux";
+import { logoutUser } from "../actions/auth";
 
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
     ({ theme, open }) => ({
         flexGrow: 1,
+        display: "flex",
+        flexDirection: "column",
         padding: theme.spacing(3),
         [theme.breakpoints.up("md")]: {
             transition: theme.transitions.create("margin", {
@@ -92,10 +96,11 @@ const AppBar = styled(MuiAppBar, {
 const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
     alignItems: "center",
-    padding: theme.spacing(0, 1),
+    flexDirection: "column",
+    padding: theme.spacing(1, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end",
+    justifyContent: "center",
 }));
 
 const theme = createTheme({
@@ -104,14 +109,26 @@ const theme = createTheme({
             default: "#f5f8fb",
             paper: "#f5f8fb",
         },
+        secondary: {
+            main: "#fff",
+        },
     },
 });
 
-const DashboardContainer = ({ children }) => {
+const DashboardContainer = ({ children, logoutUser, alerts }) => {
     const mediaTheme = useTheme();
     const matchUpMd = useMediaQuery(mediaTheme.breakpoints.up("md"));
-
+    const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(true);
+    const menuOpen = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     const handleDrawerToggle = () => {
         setOpen(!open);
@@ -128,7 +145,7 @@ const DashboardContainer = ({ children }) => {
                 <AppBar
                     position="fixed"
                     open={open}
-                    color="transparent"
+                    color="secondary"
                     variant="outlined"
                     elevation={0}
                 >
@@ -152,22 +169,30 @@ const DashboardContainer = ({ children }) => {
                                 aria-label="show 4 new notifications"
                                 color="inherit"
                             >
-                                <Badge badgeContent={4} color="error">
+                                <Badge badgeContent={2} color="error">
                                     <NotificationsIcon />
                                 </Badge>
                             </IconButton>
                             <IconButton
                                 size="large"
                                 edge="end"
-                                aria-label="account of current user"
-                                //aria-controls={menuId}
+                                aria-controls={
+                                    menuOpen ? "account-menu" : undefined
+                                }
                                 aria-haspopup="true"
-                                //onClick={handleProfileMenuOpen}
+                                aria-expanded={menuOpen ? "true" : undefined}
+                                onClick={handleClick}
                                 color="inherit"
                             >
                                 <AccountCircle />
                             </IconButton>
                         </Box>
+                        <DashboardMenu
+                            open={menuOpen}
+                            anchorEl={anchorEl}
+                            handleClose={handleClose}
+                            logoutUser={logoutUser}
+                        />
                     </Toolbar>
                 </AppBar>
                 <Drawer
@@ -192,12 +217,12 @@ const DashboardContainer = ({ children }) => {
                             variant="square"
                             alt="Well Cost Estimator"
                             src="/images/logo.png"
-                            sx={{ width: 70, height: 35, marginX: 0.5 }}
+                            sx={{ width: 60, height: 30 }}
                         />
                         <Typography
                             variant="h6"
                             noWrap
-                            component="h5"
+                            component="h6"
                             sx={{ color: "#fff" }}
                         >
                             Well Cost Estimator
@@ -219,7 +244,34 @@ const DashboardContainer = ({ children }) => {
                 </Drawer>
                 <Main open={open}>
                     <DrawerHeader />
-                    {children}
+                    <Stack sx={{ width: "100%" }} spacing={2}>
+                        {alerts.map((alert) => (
+                            <Snackbar
+                                anchorOrigin={{
+                                    vertical: "top",
+                                    horizontal: "right",
+                                }}
+                                open={Boolean(alert.id)}
+                                key={alert.id}
+                                autoHideDuration={6000}
+                            >
+                                <Alert
+                                    severity={alert.alertType}
+                                    variant="filled"
+                                    sx={{ width: "100%" }}
+                                >
+                                    {alert.msg}
+                                </Alert>
+                            </Snackbar>
+                        ))}
+                    </Stack>
+                    <Box
+                        sx={{
+                            flexGrow: 1,
+                        }}
+                    >
+                        {children}
+                    </Box>
                     <Copyright />
                 </Main>
             </Box>
@@ -227,4 +279,8 @@ const DashboardContainer = ({ children }) => {
     );
 };
 
-export default DashboardContainer;
+const mapStateToProps = (state) => ({
+    alerts: state.alert,
+});
+
+export default connect(mapStateToProps, { logoutUser })(DashboardContainer);

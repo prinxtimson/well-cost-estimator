@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import store from "./store";
+import { loadUser } from "./actions/auth";
 
 import HomePage from "./pages/HomePage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
@@ -15,6 +16,10 @@ import DashboardPage from "./pages/DashboardPage";
 const App = () => {
     const [auth, setAuth] = useState(store.getState().auth);
 
+    React.useEffect(() => {
+        store.dispatch(loadUser());
+    }, []);
+
     store.subscribe(() => setAuth(store.getState().auth));
 
     return (
@@ -22,7 +27,11 @@ const App = () => {
             <Router>
                 <Routes>
                     <Route exact path="/" element={<HomePage />} />
-                    <Route exact path="dashboard" element={<DashboardPage />} />
+                    <Route
+                        exact
+                        path="dashboard/*"
+                        element={<DashboardPage />}
+                    />
                     <Route exact path="login" element={<LoginPage />} />
                     <Route
                         exact

@@ -7,9 +7,25 @@ import { Link } from "react-router-dom";
 import AuthContainer from "../../components/AuthContainer";
 import CustomButton from "../../components/CustomButton";
 
-const RegistrationForm = ({ loading }) => {
-    const [data, setData] = React.useState({});
-    const handleSubmit = () => {};
+import { connect } from "react-redux";
+import { createAccount } from "../../actions/auth";
+
+const RegistrationForm = ({ loading, createAccount, isAuthenticated }) => {
+    const [data, setData] = React.useState({
+        fistname: "",
+        lastname: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
+    });
+
+    const handleOnChange = (e) =>
+        setData({ ...data, [e.target.name]: e.target.value });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        createAccount(data);
+    };
 
     return (
         <AuthContainer>
@@ -42,6 +58,7 @@ const RegistrationForm = ({ loading }) => {
                         name="firstname"
                         autoComplete="firstname"
                         autoFocus
+                        onChange={handleOnChange}
                     />
                     <TextField
                         margin="dense"
@@ -51,6 +68,7 @@ const RegistrationForm = ({ loading }) => {
                         label="Lastname"
                         name="lastname"
                         autoComplete="lastname"
+                        onChange={handleOnChange}
                     />
                     <TextField
                         margin="dense"
@@ -60,6 +78,7 @@ const RegistrationForm = ({ loading }) => {
                         label="Email Address"
                         name="email"
                         autoComplete="email"
+                        onChange={handleOnChange}
                     />
                     <TextField
                         margin="dense"
@@ -70,16 +89,17 @@ const RegistrationForm = ({ loading }) => {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={handleOnChange}
                     />
                     <TextField
                         margin="dense"
                         required
                         fullWidth
-                        name="password-confirmation"
+                        name="password_confirmation"
                         label="Confirm Password"
                         type="password"
-                        id="password-confirmation"
-                        autoComplete="current-password"
+                        id="password_confirmation"
+                        onChange={handleOnChange}
                     />
                     <CustomButton
                         type="submit"
@@ -95,11 +115,19 @@ const RegistrationForm = ({ loading }) => {
                         <Typography>
                             By clicking the “Create Account” button, you agree
                             to our{" "}
-                            <Link to="/terms-and-condtions" variant="body2">
+                            <Link
+                                to="#"
+                                variant="body2"
+                                style={{ color: "#155fcc" }}
+                            >
                                 Terms of Services
                             </Link>{" "}
                             and our{" "}
-                            <Link to="/terms-and-condtions" variant="body2">
+                            <Link
+                                to="#"
+                                variant="body2"
+                                style={{ color: "#155fcc" }}
+                            >
                                 Privacy Policies
                             </Link>
                         </Typography>
@@ -112,7 +140,11 @@ const RegistrationForm = ({ loading }) => {
                     >
                         <Typography textAlign="center">
                             Already have an account?{" "}
-                            <Link to="/login" variant="body2">
+                            <Link
+                                to="/login"
+                                variant="body2"
+                                style={{ color: "#155fcc" }}
+                            >
                                 Login
                             </Link>
                         </Typography>
@@ -123,4 +155,10 @@ const RegistrationForm = ({ loading }) => {
     );
 };
 
-export default RegistrationForm;
+const mapStateToProps = (state) => ({
+    alerts: state.alert,
+    isAuthenticated: state.auth.isAuthenticated,
+    loading: state.auth.loading,
+});
+
+export default connect(mapStateToProps, { createAccount })(RegistrationForm);

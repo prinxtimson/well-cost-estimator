@@ -12,7 +12,7 @@ import MainHeader from "./MainHeader";
 
 const theme = createTheme();
 
-const MainContainer = ({ children, alerts = [] }) => {
+const MainContainer = ({ children, alerts }) => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -46,4 +46,8 @@ const MainContainer = ({ children, alerts = [] }) => {
     );
 };
 
-export default MainContainer;
+const mapStateToProps = (state) => ({
+    alerts: state.alert,
+});
+
+export default connect(mapStateToProps)(MainContainer);

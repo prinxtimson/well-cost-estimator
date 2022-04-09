@@ -10,9 +10,22 @@ import Typography from "@mui/material/Typography";
 import AuthContainer from "../../components/AuthContainer";
 import CustomButton from "../../components/CustomButton";
 
-const LoginForm = ({ loading }) => {
-    const [data, setData] = React.useState({});
-    const handleSubmit = () => {};
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/auth";
+
+const LoginForm = ({ loading, loginUser }) => {
+    const [data, setData] = React.useState({
+        email: "",
+        password: "",
+    });
+
+    const handleOnChange = (e) =>
+        setData({ ...data, [e.target.name]: e.target.value });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        loginUser(data);
+    };
 
     return (
         <AuthContainer>
@@ -45,6 +58,7 @@ const LoginForm = ({ loading }) => {
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        onChange={handleOnChange}
                     />
                     <TextField
                         margin="dense"
@@ -55,6 +69,7 @@ const LoginForm = ({ loading }) => {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={handleOnChange}
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" color="primary" />}
@@ -72,7 +87,11 @@ const LoginForm = ({ loading }) => {
                     </CustomButton>
                     <Grid container>
                         <Grid item xs>
-                            <Link to="/forgot-password" variant="body2">
+                            <Link
+                                to="/forgot-password"
+                                variant="body2"
+                                style={{ color: "#155fcc" }}
+                            >
                                 Forgot password?
                             </Link>
                         </Grid>
@@ -85,7 +104,11 @@ const LoginForm = ({ loading }) => {
                     >
                         <Typography textAlign="center">
                             Don't have an account?{" "}
-                            <Link to="/register" variant="body2">
+                            <Link
+                                to="/register"
+                                variant="body2"
+                                style={{ color: "#155fcc" }}
+                            >
                                 Sign up
                             </Link>
                         </Typography>
@@ -96,4 +119,8 @@ const LoginForm = ({ loading }) => {
     );
 };
 
-export default LoginForm;
+const mapStateToProps = (state) => ({
+    loading: state.auth.loading,
+});
+
+export default connect(mapStateToProps, { loginUser })(LoginForm);
