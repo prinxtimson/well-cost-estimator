@@ -3338,6 +3338,386 @@ const modalUnstyledClasses = (0,_generateUtilityClasses__WEBPACK_IMPORTED_MODULE
 
 /***/ }),
 
+/***/ "./node_modules/@mui/base/PopperUnstyled/PopperUnstyled.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@mui/base/PopperUnstyled/PopperUnstyled.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/useForkRef.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/useEnhancedEffect.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/ownerDocument.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/chainPropTypes.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/HTMLElementType.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/refType.js");
+/* harmony import */ var _popperjs_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/popper.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Portal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../Portal */ "./node_modules/@mui/base/Portal/Portal.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+const _excluded = ["anchorEl", "children", "direction", "disablePortal", "modifiers", "open", "ownerState", "placement", "popperOptions", "popperRef", "TransitionProps"],
+      _excluded2 = ["anchorEl", "children", "container", "direction", "disablePortal", "keepMounted", "modifiers", "open", "placement", "popperOptions", "popperRef", "style", "transition"];
+
+
+
+
+
+
+
+function flipPlacement(placement, direction) {
+  if (direction === 'ltr') {
+    return placement;
+  }
+
+  switch (placement) {
+    case 'bottom-end':
+      return 'bottom-start';
+
+    case 'bottom-start':
+      return 'bottom-end';
+
+    case 'top-end':
+      return 'top-start';
+
+    case 'top-start':
+      return 'top-end';
+
+    default:
+      return placement;
+  }
+}
+
+function resolveAnchorEl(anchorEl) {
+  return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
+}
+
+const defaultPopperOptions = {};
+/* eslint-disable react/prop-types */
+
+const PopperTooltip = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function PopperTooltip(props, ref) {
+  const {
+    anchorEl,
+    children,
+    direction,
+    disablePortal,
+    modifiers,
+    open,
+    placement: initialPlacement,
+    popperOptions,
+    popperRef: popperRefProp,
+    TransitionProps
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(props, _excluded);
+
+  const tooltipRef = react__WEBPACK_IMPORTED_MODULE_2__.useRef(null);
+  const ownRef = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_4__["default"])(tooltipRef, ref);
+  const popperRef = react__WEBPACK_IMPORTED_MODULE_2__.useRef(null);
+  const handlePopperRef = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_4__["default"])(popperRef, popperRefProp);
+  const handlePopperRefRef = react__WEBPACK_IMPORTED_MODULE_2__.useRef(handlePopperRef);
+  (0,_mui_utils__WEBPACK_IMPORTED_MODULE_5__["default"])(() => {
+    handlePopperRefRef.current = handlePopperRef;
+  }, [handlePopperRef]);
+  react__WEBPACK_IMPORTED_MODULE_2__.useImperativeHandle(popperRefProp, () => popperRef.current, []);
+  const rtlPlacement = flipPlacement(initialPlacement, direction);
+  /**
+   * placement initialized from prop but can change during lifetime if modifiers.flip.
+   * modifiers.flip is essentially a flip for controlled/uncontrolled behavior
+   */
+
+  const [placement, setPlacement] = react__WEBPACK_IMPORTED_MODULE_2__.useState(rtlPlacement);
+  react__WEBPACK_IMPORTED_MODULE_2__.useEffect(() => {
+    if (popperRef.current) {
+      popperRef.current.forceUpdate();
+    }
+  });
+  (0,_mui_utils__WEBPACK_IMPORTED_MODULE_5__["default"])(() => {
+    if (!anchorEl || !open) {
+      return undefined;
+    }
+
+    const handlePopperUpdate = data => {
+      setPlacement(data.placement);
+    };
+
+    const resolvedAnchorEl = resolveAnchorEl(anchorEl);
+
+    if (true) {
+      if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
+        const box = resolvedAnchorEl.getBoundingClientRect();
+
+        if ( true && box.top === 0 && box.left === 0 && box.right === 0 && box.bottom === 0) {
+          console.warn(['MUI: The `anchorEl` prop provided to the component is invalid.', 'The anchor element should be part of the document layout.', "Make sure the element is present in the document or that it's not display none."].join('\n'));
+        }
+      }
+    }
+
+    let popperModifiers = [{
+      name: 'preventOverflow',
+      options: {
+        altBoundary: disablePortal
+      }
+    }, {
+      name: 'flip',
+      options: {
+        altBoundary: disablePortal
+      }
+    }, {
+      name: 'onUpdate',
+      enabled: true,
+      phase: 'afterWrite',
+      fn: ({
+        state
+      }) => {
+        handlePopperUpdate(state);
+      }
+    }];
+
+    if (modifiers != null) {
+      popperModifiers = popperModifiers.concat(modifiers);
+    }
+
+    if (popperOptions && popperOptions.modifiers != null) {
+      popperModifiers = popperModifiers.concat(popperOptions.modifiers);
+    }
+
+    const popper = (0,_popperjs_core__WEBPACK_IMPORTED_MODULE_6__.createPopper)(resolveAnchorEl(anchorEl), tooltipRef.current, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+      placement: rtlPlacement
+    }, popperOptions, {
+      modifiers: popperModifiers
+    }));
+    handlePopperRefRef.current(popper);
+    return () => {
+      popper.destroy();
+      handlePopperRefRef.current(null);
+    };
+  }, [anchorEl, disablePortal, modifiers, open, popperOptions, rtlPlacement]);
+  const childProps = {
+    placement
+  };
+
+  if (TransitionProps !== null) {
+    childProps.TransitionProps = TransitionProps;
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    ref: ownRef,
+    role: "tooltip"
+  }, other, {
+    children: typeof children === 'function' ? children(childProps) : children
+  }));
+});
+/* eslint-enable react/prop-types */
+
+/**
+ * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
+ */
+
+const PopperUnstyled = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function PopperUnstyled(props, ref) {
+  const {
+    anchorEl,
+    children,
+    container: containerProp,
+    direction = 'ltr',
+    disablePortal = false,
+    keepMounted = false,
+    modifiers,
+    open,
+    placement = 'bottom',
+    popperOptions = defaultPopperOptions,
+    popperRef,
+    style,
+    transition = false
+  } = props,
+        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(props, _excluded2);
+
+  const [exited, setExited] = react__WEBPACK_IMPORTED_MODULE_2__.useState(true);
+
+  const handleEnter = () => {
+    setExited(false);
+  };
+
+  const handleExited = () => {
+    setExited(true);
+  };
+
+  if (!keepMounted && !open && (!transition || exited)) {
+    return null;
+  } // If the container prop is provided, use that
+  // If the anchorEl prop is provided, use its parent body element as the container
+  // If neither are provided let the Modal take care of choosing the container
+
+
+  const container = containerProp || (anchorEl ? (0,_mui_utils__WEBPACK_IMPORTED_MODULE_7__["default"])(resolveAnchorEl(anchorEl)).body : undefined);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Portal__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    disablePortal: disablePortal,
+    container: container,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(PopperTooltip, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+      anchorEl: anchorEl,
+      direction: direction,
+      disablePortal: disablePortal,
+      modifiers: modifiers,
+      ref: ref,
+      open: transition ? !exited : open,
+      placement: placement,
+      popperOptions: popperOptions,
+      popperRef: popperRef
+    }, other, {
+      style: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+        // Prevents scroll issue, waiting for Popper.js to add this style once initiated.
+        position: 'fixed',
+        // Fix Popper.js display issue
+        top: 0,
+        left: 0,
+        display: !open && keepMounted && (!transition || exited) ? 'none' : null
+      }, style),
+      TransitionProps: transition ? {
+        in: open,
+        onEnter: handleEnter,
+        onExited: handleExited
+      } : null,
+      children: children
+    }))
+  });
+});
+ true ? PopperUnstyled.propTypes
+/* remove-proptypes */
+= {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
+   * or a function that returns either.
+   * It's used to set the position of the popper.
+   * The return value will passed as the reference object of the Popper instance.
+   */
+  anchorEl: (0,_mui_utils__WEBPACK_IMPORTED_MODULE_9__["default"])(prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([_mui_utils__WEBPACK_IMPORTED_MODULE_11__["default"], (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func)]), props => {
+    if (props.open) {
+      const resolvedAnchorEl = resolveAnchorEl(props.anchorEl);
+
+      if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
+        const box = resolvedAnchorEl.getBoundingClientRect();
+
+        if ( true && box.top === 0 && box.left === 0 && box.right === 0 && box.bottom === 0) {
+          return new Error(['MUI: The `anchorEl` prop provided to the component is invalid.', 'The anchor element should be part of the document layout.', "Make sure the element is present in the document or that it's not display none."].join('\n'));
+        }
+      } else if (!resolvedAnchorEl || typeof resolvedAnchorEl.getBoundingClientRect !== 'function' || resolvedAnchorEl.contextElement != null && resolvedAnchorEl.contextElement.nodeType !== 1) {
+        return new Error(['MUI: The `anchorEl` prop provided to the component is invalid.', 'It should be an HTML element instance or a virtualElement ', '(https://popper.js.org/docs/v2/virtual-elements/).'].join('\n'));
+      }
+    }
+
+    return null;
+  }),
+
+  /**
+   * Popper render function or node.
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_10___default().node), (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func)]),
+
+  /**
+   * An HTML element or function that returns one.
+   * The `container` will have the portal children appended to it.
+   *
+   * By default, it uses the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  container: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOfType([_mui_utils__WEBPACK_IMPORTED_MODULE_11__["default"], (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func)]),
+
+  /**
+   * Direction of the text.
+   * @default 'ltr'
+   */
+  direction: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['ltr', 'rtl']),
+
+  /**
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disablePortal: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool),
+
+  /**
+   * Always keep the children in the DOM.
+   * This prop can be useful in SEO situation or
+   * when you want to maximize the responsiveness of the Popper.
+   * @default false
+   */
+  keepMounted: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool),
+
+  /**
+   * Popper.js is based on a "plugin-like" architecture,
+   * most of its features are fully encapsulated "modifiers".
+   *
+   * A modifier is a function that is called each time Popper.js needs to
+   * compute the position of the popper.
+   * For this reason, modifiers should be very performant to avoid bottlenecks.
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
+   */
+  modifiers: prop_types__WEBPACK_IMPORTED_MODULE_10___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_10___default().shape({
+    data: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object),
+    effect: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func),
+    enabled: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool),
+    fn: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func),
+    name: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().any),
+    options: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object),
+    phase: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['afterMain', 'afterRead', 'afterWrite', 'beforeMain', 'beforeRead', 'beforeWrite', 'main', 'read', 'write']),
+    requires: prop_types__WEBPACK_IMPORTED_MODULE_10___default().arrayOf((prop_types__WEBPACK_IMPORTED_MODULE_10___default().string)),
+    requiresIfExists: prop_types__WEBPACK_IMPORTED_MODULE_10___default().arrayOf((prop_types__WEBPACK_IMPORTED_MODULE_10___default().string))
+  })),
+
+  /**
+   * If `true`, the component is shown.
+   */
+  open: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool.isRequired),
+
+  /**
+   * Popper placement.
+   * @default 'bottom'
+   */
+  placement: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['auto-end', 'auto-start', 'auto', 'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top']),
+
+  /**
+   * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
+   * @default {}
+   */
+  popperOptions: prop_types__WEBPACK_IMPORTED_MODULE_10___default().shape({
+    modifiers: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().array),
+    onFirstUpdate: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().func),
+    placement: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['auto-end', 'auto-start', 'auto', 'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top']),
+    strategy: prop_types__WEBPACK_IMPORTED_MODULE_10___default().oneOf(['absolute', 'fixed'])
+  }),
+
+  /**
+   * A ref that points to the used popper instance.
+   */
+  popperRef: _mui_utils__WEBPACK_IMPORTED_MODULE_12__["default"],
+
+  /**
+   * @ignore
+   */
+  style: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().object),
+
+  /**
+   * Help supporting a react-transition-group/Transition component.
+   * @default false
+   */
+  transition: (prop_types__WEBPACK_IMPORTED_MODULE_10___default().bool)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PopperUnstyled);
+
+/***/ }),
+
 /***/ "./node_modules/@mui/base/Portal/Portal.js":
 /*!*************************************************!*\
   !*** ./node_modules/@mui/base/Portal/Portal.js ***!
@@ -4282,6 +4662,34 @@ var _jsxRuntime = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/r
 var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
   d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
 }), 'AccountCircle');
+
+exports["default"] = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@mui/icons-material/Close.js":
+/*!***************************************************!*\
+  !*** ./node_modules/@mui/icons-material/Close.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = void 0;
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@mui/icons-material/utils/createSvgIcon.js"));
+
+var _jsxRuntime = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var _default = (0, _createSvgIcon.default)( /*#__PURE__*/(0, _jsxRuntime.jsx)("path", {
+  d: "M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+}), 'Close');
 
 exports["default"] = _default;
 
@@ -18020,6 +18428,173 @@ function getPopoverUtilityClass(slot) {
 }
 const popoverClasses = (0,_mui_base__WEBPACK_IMPORTED_MODULE_1__["default"])('MuiPopover', ['root', 'paper']);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (popoverClasses);
+
+/***/ }),
+
+/***/ "./node_modules/@mui/material/Popper/Popper.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@mui/material/Popper/Popper.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _mui_base_PopperUnstyled__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/base/PopperUnstyled */ "./node_modules/@mui/base/PopperUnstyled/PopperUnstyled.js");
+/* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/system */ "./node_modules/@mui/system/esm/useThemeWithoutDefault.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/HTMLElementType.js");
+/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/refType.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles */ "./node_modules/@mui/material/styles/styled.js");
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../styles */ "./node_modules/@mui/material/styles/useThemeProps.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+const PopperRoot = (0,_styles__WEBPACK_IMPORTED_MODULE_3__["default"])(_mui_base_PopperUnstyled__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  name: 'MuiPopper',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root
+})({});
+/**
+ *
+ * Demos:
+ *
+ * - [Autocomplete](https://mui.com/components/autocomplete/)
+ * - [Menus](https://mui.com/components/menus/)
+ * - [Popper](https://mui.com/components/popper/)
+ *
+ * API:
+ *
+ * - [Popper API](https://mui.com/api/popper/)
+ */
+
+const Popper = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.forwardRef(function Popper(inProps, ref) {
+  const theme = (0,_mui_system__WEBPACK_IMPORTED_MODULE_5__["default"])();
+  const props = (0,_styles__WEBPACK_IMPORTED_MODULE_6__["default"])({
+    props: inProps,
+    name: 'MuiPopper'
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(PopperRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    direction: theme == null ? void 0 : theme.direction
+  }, props, {
+    ref: ref
+  }));
+});
+ true ? Popper.propTypes
+/* remove-proptypes */
+= {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+
+  /**
+   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
+   * or a function that returns either.
+   * It's used to set the position of the popper.
+   * The return value will passed as the reference object of the Popper instance.
+   */
+  anchorEl: prop_types__WEBPACK_IMPORTED_MODULE_7___default().oneOfType([_mui_utils__WEBPACK_IMPORTED_MODULE_8__["default"], (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func)]),
+
+  /**
+   * Popper render function or node.
+   */
+  children: prop_types__WEBPACK_IMPORTED_MODULE_7___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_7___default().node), (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func)]),
+
+  /**
+   * An HTML element or function that returns one.
+   * The `container` will have the portal children appended to it.
+   *
+   * By default, it uses the body of the top-level document object,
+   * so it's simply `document.body` most of the time.
+   */
+  container: prop_types__WEBPACK_IMPORTED_MODULE_7___default().oneOfType([_mui_utils__WEBPACK_IMPORTED_MODULE_8__["default"], (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func)]),
+
+  /**
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
+   */
+  disablePortal: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
+
+  /**
+   * Always keep the children in the DOM.
+   * This prop can be useful in SEO situation or
+   * when you want to maximize the responsiveness of the Popper.
+   * @default false
+   */
+  keepMounted: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
+
+  /**
+   * Popper.js is based on a "plugin-like" architecture,
+   * most of its features are fully encapsulated "modifiers".
+   *
+   * A modifier is a function that is called each time Popper.js needs to
+   * compute the position of the popper.
+   * For this reason, modifiers should be very performant to avoid bottlenecks.
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
+   */
+  modifiers: prop_types__WEBPACK_IMPORTED_MODULE_7___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_7___default().shape({
+    data: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object),
+    effect: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func),
+    enabled: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool),
+    fn: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func),
+    name: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().any),
+    options: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object),
+    phase: prop_types__WEBPACK_IMPORTED_MODULE_7___default().oneOf(['afterMain', 'afterRead', 'afterWrite', 'beforeMain', 'beforeRead', 'beforeWrite', 'main', 'read', 'write']),
+    requires: prop_types__WEBPACK_IMPORTED_MODULE_7___default().arrayOf((prop_types__WEBPACK_IMPORTED_MODULE_7___default().string)),
+    requiresIfExists: prop_types__WEBPACK_IMPORTED_MODULE_7___default().arrayOf((prop_types__WEBPACK_IMPORTED_MODULE_7___default().string))
+  })),
+
+  /**
+   * If `true`, the component is shown.
+   */
+  open: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool.isRequired),
+
+  /**
+   * Popper placement.
+   * @default 'bottom'
+   */
+  placement: prop_types__WEBPACK_IMPORTED_MODULE_7___default().oneOf(['auto-end', 'auto-start', 'auto', 'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top']),
+
+  /**
+   * Options provided to the [`Popper.js`](https://popper.js.org/docs/v2/constructors/#options) instance.
+   * @default {}
+   */
+  popperOptions: prop_types__WEBPACK_IMPORTED_MODULE_7___default().shape({
+    modifiers: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().array),
+    onFirstUpdate: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func),
+    placement: prop_types__WEBPACK_IMPORTED_MODULE_7___default().oneOf(['auto-end', 'auto-start', 'auto', 'bottom-end', 'bottom-start', 'bottom', 'left-end', 'left-start', 'left', 'right-end', 'right-start', 'right', 'top-end', 'top-start', 'top']),
+    strategy: prop_types__WEBPACK_IMPORTED_MODULE_7___default().oneOf(['absolute', 'fixed'])
+  }),
+
+  /**
+   * A ref that points to the used popper instance.
+   */
+  popperRef: _mui_utils__WEBPACK_IMPORTED_MODULE_9__["default"],
+
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: prop_types__WEBPACK_IMPORTED_MODULE_7___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_7___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_7___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_7___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool)])), (prop_types__WEBPACK_IMPORTED_MODULE_7___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object)]),
+
+  /**
+   * Help supporting a react-transition-group/Transition component.
+   * @default false
+   */
+  transition: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().bool)
+} : 0;
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Popper);
 
 /***/ }),
 
@@ -34668,6 +35243,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Copyright__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Copyright */ "./resources/js/src/components/Copyright.js");
 /* harmony import */ var _MainHeader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MainHeader */ "./resources/js/src/components/MainHeader.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -34685,6 +35272,22 @@ var theme = (0,_mui_material_styles__WEBPACK_IMPORTED_MODULE_5__["default"])();
 var MainContainer = function MainContainer(_ref) {
   var children = _ref.children,
       alerts = _ref.alerts;
+
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      open = _React$useState2[0],
+      setOpen = _React$useState2[1];
+
+  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0__.useState(null),
+      _React$useState4 = _slicedToArray(_React$useState3, 2),
+      anchorEl = _React$useState4[0],
+      setAnchorEl = _React$useState4[1];
+
+  var handleToggleNavMenu = function handleToggleNavMenu(event) {
+    setOpen(!open);
+    setAnchorEl(event.currentTarget);
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_mui_material_styles__WEBPACK_IMPORTED_MODULE_6__["default"], {
     theme: theme,
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_mui_material_CssBaseline__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_mui_material_Container__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -34699,7 +35302,11 @@ var MainContainer = function MainContainer(_ref) {
         display: "flex",
         flexDirection: "column"
       },
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_MainHeader__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_mui_material_Stack__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_MainHeader__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        handleToggleNavMenu: handleToggleNavMenu,
+        open: open,
+        anchorEl: anchorEl
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_mui_material_Stack__WEBPACK_IMPORTED_MODULE_9__["default"], {
         sx: {
           width: "100%"
         },
@@ -34760,16 +35367,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _mui_material_AppBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/AppBar */ "./node_modules/@mui/material/AppBar/AppBar.js");
-/* harmony import */ var _mui_material_Box__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material/Box */ "./node_modules/@mui/material/Box/Box.js");
-/* harmony import */ var _mui_material_Toolbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/Toolbar */ "./node_modules/@mui/material/Toolbar/Toolbar.js");
-/* harmony import */ var _mui_material_Typography__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material/Typography */ "./node_modules/@mui/material/Typography/Typography.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
-/* harmony import */ var _mui_material_IconButton__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material/IconButton */ "./node_modules/@mui/material/IconButton/IconButton.js");
-/* harmony import */ var _mui_icons_material_Menu__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/icons-material/Menu */ "./node_modules/@mui/icons-material/Menu.js");
-/* harmony import */ var _mui_material_Avatar__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material/Avatar */ "./node_modules/@mui/material/Avatar/Avatar.js");
+/* harmony import */ var _mui_material_AppBar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/AppBar */ "./node_modules/@mui/material/AppBar/AppBar.js");
+/* harmony import */ var _mui_material_Box__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Box */ "./node_modules/@mui/material/Box/Box.js");
+/* harmony import */ var _mui_material_Toolbar__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material/Toolbar */ "./node_modules/@mui/material/Toolbar/Toolbar.js");
+/* harmony import */ var _mui_material_Typography__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material/Typography */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var _mui_material_IconButton__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material/IconButton */ "./node_modules/@mui/material/IconButton/IconButton.js");
+/* harmony import */ var _mui_icons_material_Menu__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @mui/icons-material/Menu */ "./node_modules/@mui/icons-material/Menu.js");
+/* harmony import */ var _mui_icons_material_Close__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @mui/icons-material/Close */ "./node_modules/@mui/icons-material/Close.js");
+/* harmony import */ var _mui_material_Avatar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mui/material/Avatar */ "./node_modules/@mui/material/Avatar/Avatar.js");
 /* harmony import */ var _CustomButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CustomButton */ "./resources/js/src/components/CustomButton.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _MainMenu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MainMenu */ "./resources/js/src/components/MainMenu.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -34788,23 +35398,26 @@ var pages = [{
   url: "/login"
 }];
 
-var MainHeader = function MainHeader() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_3__["default"], {
+var MainHeader = function MainHeader(_ref) {
+  var handleToggleNavMenu = _ref.handleToggleNavMenu,
+      open = _ref.open,
+      anchorEl = _ref.anchorEl;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_4__["default"], {
     sx: {
       flexGrow: 1
     },
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_AppBar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_AppBar__WEBPACK_IMPORTED_MODULE_5__["default"], {
       position: "static",
       color: "transparent",
       elevation: 0,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_mui_material_Toolbar__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material_Toolbar__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
           to: "/",
           style: {
             display: "flex",
             alignItems: "center"
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_Avatar__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Avatar__WEBPACK_IMPORTED_MODULE_8__["default"], {
             variant: "square",
             alt: "Well Cost Estimator",
             src: "/images/logo.png",
@@ -34813,7 +35426,7 @@ var MainHeader = function MainHeader() {
               height: 40,
               marginX: 1
             }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_9__["default"], {
             variant: "h6",
             noWrap: true,
             component: "div",
@@ -34822,11 +35435,11 @@ var MainHeader = function MainHeader() {
             },
             children: "Well Cost Estimator"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_4__["default"], {
           sx: {
             flexGrow: 1
           }
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_4__["default"], {
           sx: {
             flexShrink: 0,
             display: {
@@ -34836,7 +35449,7 @@ var MainHeader = function MainHeader() {
             alignItems: "center"
           },
           children: [pages.map(function (page) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
               //onClick={handleCloseNavMenu}
               style: {
                 my: 2,
@@ -34845,22 +35458,22 @@ var MainHeader = function MainHeader() {
                 margin: "0 10px"
               },
               to: page.url,
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_8__["default"], {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_9__["default"], {
                 variant: "div",
                 component: "h6",
                 fontSize: 15,
                 children: page.text
               })
             }, page.text);
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Link, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
             to: "/register",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_CustomButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_CustomButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
               variant: "contained",
               size: "small",
               children: "Create Account"
             })
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_Box__WEBPACK_IMPORTED_MODULE_4__["default"], {
           sx: {
             //flexGrow: 1,
             display: {
@@ -34868,22 +35481,138 @@ var MainHeader = function MainHeader() {
               md: "none"
             }
           },
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_IconButton__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          children: open ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_IconButton__WEBPACK_IMPORTED_MODULE_10__["default"], {
             size: "large",
             "aria-label": "account of current user",
             "aria-controls": "menu-appbar",
-            "aria-haspopup": "true" //onClick={handleOpenNavMenu}
-            ,
+            "aria-haspopup": "true",
+            onClick: handleToggleNavMenu,
             color: "inherit",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_icons_material_Menu__WEBPACK_IMPORTED_MODULE_10__["default"], {})
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_icons_material_Close__WEBPACK_IMPORTED_MODULE_11__["default"], {
+              sx: {
+                color: "#fff"
+              }
+            })
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_material_IconButton__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            size: "large",
+            "aria-label": "account of current user",
+            "aria-controls": "menu-appbar",
+            "aria-haspopup": "true",
+            onClick: handleToggleNavMenu,
+            color: "inherit",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_mui_icons_material_Menu__WEBPACK_IMPORTED_MODULE_12__["default"], {
+              sx: {
+                color: "#fff"
+              }
+            })
           })
         })]
       })
-    })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_MainMenu__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      open: open,
+      anchorEl: anchorEl
+    })]
   });
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MainHeader);
+
+/***/ }),
+
+/***/ "./resources/js/src/components/MainMenu.js":
+/*!*************************************************!*\
+  !*** ./resources/js/src/components/MainMenu.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _mui_material_Paper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/material/Paper */ "./node_modules/@mui/material/Paper/Paper.js");
+/* harmony import */ var _mui_material_MenuList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/material/MenuList */ "./node_modules/@mui/material/MenuList/MenuList.js");
+/* harmony import */ var _mui_material_MenuItem__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mui/material/MenuItem */ "./node_modules/@mui/material/MenuItem/MenuItem.js");
+/* harmony import */ var _mui_material_Typography__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/material/Typography */ "./node_modules/@mui/material/Typography/Typography.js");
+/* harmony import */ var _mui_material_Divider__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/material/Divider */ "./node_modules/@mui/material/Divider/Divider.js");
+/* harmony import */ var _mui_material_Popper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @mui/material/Popper */ "./node_modules/@mui/material/Popper/Popper.js");
+/* harmony import */ var _mui_material_Fade__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mui/material/Fade */ "./node_modules/@mui/material/Fade/Fade.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
+/* harmony import */ var _CustomButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CustomButton */ "./resources/js/src/components/CustomButton.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var MainMenu = function MainMenu(_ref) {
+  var open = _ref.open,
+      anchorEl = _ref.anchorEl;
+  var id = open && Boolean(anchorEl) ? "transition-popper" : undefined;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_Popper__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    id: id,
+    open: open,
+    anchorEl: anchorEl,
+    transition: true,
+    placement: "bottom-start",
+    sx: {
+      width: "100%"
+    },
+    children: function children(_ref2) {
+      var TransitionProps = _ref2.TransitionProps;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_Fade__WEBPACK_IMPORTED_MODULE_4__["default"], _objectSpread(_objectSpread({}, TransitionProps), {}, {
+        timeout: 350,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_Paper__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          sx: {
+            width: "100%"
+          },
+          elevation: 0,
+          square: true,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(_mui_material_MenuList__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_Divider__WEBPACK_IMPORTED_MODULE_7__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
+              to: "/login",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_MenuItem__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_Typography__WEBPACK_IMPORTED_MODULE_10__["default"], {
+                  variant: "div",
+                  component: "h6",
+                  fontSize: 15,
+                  textAlign: "center",
+                  children: "Login"
+                })
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
+              to: "/register",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_mui_material_MenuItem__WEBPACK_IMPORTED_MODULE_9__["default"], {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_CustomButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                  variant: "contained",
+                  fullWidth: true,
+                  children: "Create Account"
+                })
+              })
+            })]
+          })
+        })
+      }));
+    }
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MainMenu);
 
 /***/ }),
 

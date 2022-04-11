@@ -4,16 +4,17 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import Avatar from "@mui/material/Avatar";
 
 import CustomButton from "./CustomButton";
+import MainMenu from "./MainMenu";
 
 const pages = [{ text: "Login", url: "/login" }];
 
-const MainHeader = () => {
+const MainHeader = ({ handleToggleNavMenu, open, anchorEl }) => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" color="transparent" elevation={0}>
@@ -78,19 +79,33 @@ const MainHeader = () => {
                             display: { xs: "flex", md: "none" },
                         }}
                     >
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            //onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
+                        {open ? (
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleToggleNavMenu}
+                                color="inherit"
+                            >
+                                <CloseIcon sx={{ color: "#fff" }} />
+                            </IconButton>
+                        ) : (
+                            <IconButton
+                                size="large"
+                                aria-label="account of current user"
+                                aria-controls="menu-appbar"
+                                aria-haspopup="true"
+                                onClick={handleToggleNavMenu}
+                                color="inherit"
+                            >
+                                <MenuIcon sx={{ color: "#fff" }} />
+                            </IconButton>
+                        )}
                     </Box>
                 </Toolbar>
             </AppBar>
+            <MainMenu open={open} anchorEl={anchorEl} />
         </Box>
     );
 };

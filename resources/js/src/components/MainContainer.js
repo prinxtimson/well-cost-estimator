@@ -13,6 +13,14 @@ import MainHeader from "./MainHeader";
 const theme = createTheme();
 
 const MainContainer = ({ children, alerts }) => {
+    const [open, setOpen] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleToggleNavMenu = (event) => {
+        setOpen(!open);
+        setAnchorEl(event.currentTarget);
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
@@ -29,7 +37,11 @@ const MainContainer = ({ children, alerts }) => {
                     flexDirection: "column",
                 }}
             >
-                <MainHeader />
+                <MainHeader
+                    handleToggleNavMenu={handleToggleNavMenu}
+                    open={open}
+                    anchorEl={anchorEl}
+                />
                 <Stack sx={{ width: "100%" }} spacing={2}>
                     {alerts.map((alert) => (
                         <Snackbar
