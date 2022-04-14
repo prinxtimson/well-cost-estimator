@@ -1,6 +1,5 @@
 import React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import Container from "@mui/material/Container";
 import Drawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
 import MuiAppBar from "@mui/material/AppBar";
@@ -28,7 +27,6 @@ import {
     useTheme,
 } from "@mui/material/styles";
 import { blue } from "@mui/material/colors";
-import { Link } from "react-router-dom";
 
 import Copyright from "./Copyright";
 import DashboardMenu from "./DashboardMenu";
@@ -268,6 +266,9 @@ const DashboardContainer = ({ children, logoutUser, alerts }) => {
                     <Box
                         sx={{
                             flexGrow: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
                         }}
                     >
                         {children}

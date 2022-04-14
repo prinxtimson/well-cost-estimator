@@ -40,6 +40,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             ])->save();
         }
 
+        unset($input['email']);
+
         $user->profile()->update($input);
     }
 
@@ -57,6 +59,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'email' => $input['email'],
             'email_verified_at' => null,
         ])->save();
+
+        unset($input['email']);
+        
+        $user->profile()->update($input);
 
         $user->sendEmailVerificationNotification();
     }
