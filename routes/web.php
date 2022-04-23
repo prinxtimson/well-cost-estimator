@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('paystack/webhook', [WebhookController::class, 'handleWebhook']);
 
 Route::middleware(['guest'])->group(function () {
     //
@@ -58,7 +61,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', function () {
         return view('welcome');
     })->name('dashboard');
-    Route::get('dashboard/{name?}', function () {
+    Route::get('dashboard/{name?}/{id?}', function () {
         return view('welcome');
     })->name('dashboard');
     // Route::get('subscribe/{plan}', function () {

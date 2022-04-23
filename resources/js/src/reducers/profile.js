@@ -38,7 +38,7 @@ export default (state = initialState, actions) => {
             return {
                 ...state,
                 loading: false,
-                profiles: { ...state.profiles },
+                profiles: [...state.profiles],
             };
         case GET_PROFILES:
             return {

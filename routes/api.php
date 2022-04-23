@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SubscriptionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +24,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('profile/me', [ProfileController::class, 'me']);
     Route::get('profile/{id}', [ProfileController::class, 'show']);
+
+    Route::get('project', [ProjectController::class, 'index']);
+    Route::get('project/{id}', [ProjectController::class, 'show']);
+    Route::post('project', [ProjectController::class, 'store']);
+    Route::put('project/{id}', [ProjectController::class, 'update']);
+    Route::delete('project/{id}', [ProjectController::class, 'destroy']);
+
+    Route::get('subscription', [SubscriptionController::class, 'index']);
+    Route::get('subscription/{id}', [SubscriptionController::class, 'show']);
+    Route::get('subscription/verify/{trxref}', [SubscriptionController::class, 'verify']);
+    Route::post('subscription/pay', [SubscriptionController::class, 'pay']);
 });
 
 Route::group(['middleware' => ['auth:sanctum', 'role:admin|super-admin']], function () {

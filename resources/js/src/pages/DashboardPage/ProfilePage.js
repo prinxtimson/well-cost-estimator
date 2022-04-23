@@ -69,7 +69,9 @@ const ProfilePage = ({
                 }}
             >
                 <Box sx={{ mb: 2 }}>
-                    <Typography>Your Profile</Typography>
+                    <Typography variant="h5" noWrap component="p">
+                        Your Profile
+                    </Typography>
                 </Box>
                 <Box
                     component="form"

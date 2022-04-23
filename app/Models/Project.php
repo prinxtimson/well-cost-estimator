@@ -21,4 +21,9 @@ class Project extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function project_meta ()
+    {
+        return $this->hasMany(Projectmeta::class);
+    }
 }

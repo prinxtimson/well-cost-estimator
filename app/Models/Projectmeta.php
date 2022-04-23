@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Projectmeta extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'meta_key',
+        'meta_value',
+    ];
+
+    public function project ()
+    {
+        return $this->belongsTo(Project::class);
+    }
 }

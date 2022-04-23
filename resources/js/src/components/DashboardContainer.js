@@ -14,6 +14,9 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Badge from "@mui/material/Badge";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
+import WorkIcon from "@mui/icons-material/Work";
+import SettingsIcon from "@mui/icons-material/Settings";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Avatar from "@mui/material/Avatar";
 import Alert from "@mui/material/Alert";
@@ -27,6 +30,7 @@ import {
     useTheme,
 } from "@mui/material/styles";
 import { blue } from "@mui/material/colors";
+import { Link } from "react-router-dom";
 
 import Copyright from "./Copyright";
 import DashboardMenu from "./DashboardMenu";
@@ -41,25 +45,26 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
         flexGrow: 1,
         display: "flex",
         flexDirection: "column",
-        padding: theme.spacing(3),
+        padding: theme.spacing(0),
+        [theme.breakpoints.up("lg")]: {
+            marginLeft: 0,
+        },
         [theme.breakpoints.up("md")]: {
             transition: theme.transitions.create("margin", {
                 easing: theme.transitions.easing.easeOut,
                 duration: theme.transitions.duration.enteringScreen,
             }),
-            marginLeft: 0,
         },
         transition: theme.transitions.create("margin", {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        marginLeft: `-${drawerWidth}px`,
         ...(open && {
             transition: theme.transitions.create("margin", {
                 easing: theme.transitions.easing.easeOut,
                 duration: theme.transitions.duration.enteringScreen,
             }),
-            marginLeft: 0,
+            marginLeft: `${drawerWidth}px`,
         }),
     })
 );
@@ -138,7 +143,7 @@ const DashboardContainer = ({ children, logoutUser, alerts }) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <Box sx={{ display: "flex" }}>
+            <Box sx={{ display: "flex", flexGrow: 1 }}>
                 <CssBaseline />
                 <AppBar
                     position="fixed"
@@ -229,13 +234,23 @@ const DashboardContainer = ({ children, logoutUser, alerts }) => {
                     <List>
                         {["Project", "Subscription", "Settings"].map(
                             (text, index) => (
-                                <ListItem button key={text}>
-                                    <ListItemIcon></ListItemIcon>
-                                    <ListItemText
-                                        primary={text}
-                                        sx={{ color: "#ffffff" }}
-                                    />
-                                </ListItem>
+                                <Link key={text} to={text.toLowerCase()}>
+                                    <ListItem key={text}>
+                                        <ListItemIcon>
+                                            {text === "Project" ? (
+                                                <WorkIcon color="secondary" />
+                                            ) : text === "Settings" ? (
+                                                <SettingsIcon color="secondary" />
+                                            ) : (
+                                                <CreditCardIcon color="secondary" />
+                                            )}
+                                        </ListItemIcon>
+                                        <ListItemText
+                                            primary={text}
+                                            sx={{ color: "#ffffff" }}
+                                        />
+                                    </ListItem>
+                                </Link>
                             )
                         )}
                     </List>
@@ -268,7 +283,6 @@ const DashboardContainer = ({ children, logoutUser, alerts }) => {
                             flexGrow: 1,
                             display: "flex",
                             justifyContent: "center",
-                            alignItems: "center",
                         }}
                     >
                         {children}

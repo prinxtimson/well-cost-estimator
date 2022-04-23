@@ -96,11 +96,11 @@ export const getAllProfiles = () => async (dispatch) => {
         dispatch({ type: PROFILE_ERROR });
         if (err.response.status === 500) {
             return dispatch(
-                setAlert("Server errror, please try again.", "danger")
+                setAlert("Server errror, please try again.", "error")
             );
         }
 
-        dispatch(setAlert(err.response.data.message, "danger"));
+        dispatch(setAlert(err.response.data.message, "error"));
     }
 };
 
@@ -121,11 +121,11 @@ export const updateProfile = (id, data) => async (dispatch) => {
         dispatch({ type: PROFILE_ERROR });
         if (err.response.status === 500) {
             return dispatch(
-                setAlert("Server errror, please try again.", "danger")
+                setAlert("Server errror, please try again.", "error")
             );
         }
 
-        dispatch(setAlert(err.response.data.message, "danger"));
+        dispatch(setAlert(err.response.data.message, "error"));
     }
 };
 
@@ -144,11 +144,11 @@ export const enableUser = (id) => async (dispatch) => {
         dispatch({ type: PROFILE_ERROR });
         if (err.response.status === 500) {
             return dispatch(
-                setAlert("Server errror, please try again.", "danger")
+                setAlert("Server errror, please try again.", "error")
             );
         }
 
-        dispatch(setAlert(err.response.data.message, "danger"));
+        dispatch(setAlert(err.response.data.message, "error"));
     }
 };
 
@@ -167,11 +167,11 @@ export const disableUser = (id) => async (dispatch) => {
         dispatch({ type: PROFILE_ERROR });
         if (err.response.status === 500) {
             return dispatch(
-                setAlert("Server errror, please try again.", "danger")
+                setAlert("Server errror, please try again.", "error")
             );
         }
 
-        dispatch(setAlert(err.response.data.message, "danger"));
+        dispatch(setAlert(err.response.data.message, "error"));
     }
 };
 
@@ -195,11 +195,11 @@ export const delUser = (id) => async (dispatch) => {
             dispatch({ type: PROFILE_ERROR });
             if (err.response.status === 500) {
                 return dispatch(
-                    setAlert("Server errror, please try again.", "danger")
+                    setAlert("Server errror, please try again.", "error")
                 );
             }
 
-            dispatch(setAlert(err.response.data.message, "danger"));
+            dispatch(setAlert(err.response.data.message, "error"));
         }
     }
 };
