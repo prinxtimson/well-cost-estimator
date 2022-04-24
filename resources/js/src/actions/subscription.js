@@ -57,7 +57,7 @@ export const paySubscription = (data) => async (dispatch) => {
     try {
         const res = await axios.post("/api/subscription/pay", data);
 
-        console.log(res.data);
+        window.location.href = res.data.data.authorization_url;
     } catch (err) {
         console.log(err.response);
         dispatch({ type: SUBSCRIPTION_ERROR });

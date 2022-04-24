@@ -110,54 +110,54 @@ class PaystackService {
 
     public static function charge($data)
     {
-        return (new self)->setHttpResponse('charge', 'POST', $data)->getResponse();
+        return (new self)->setHttpResponse('/charge', 'POST', $data)->getResponse();
     }
 
     public static function makePaymentRequest($data)
     {
-        return (new self)->setHttpResponse('transaction/initialize', 'POST', $data)->getResponse();
+        return (new self)->setHttpResponse('/transaction/initialize', 'POST', $data)->getResponse();
     }
 
     public static function verifyPayment($ref)
     {
-        return (new self)->setHttpResponse('transaction/verify/'.$ref, 'GET')->getResponse();
+        return (new self)->setHttpResponse('/transaction/verify/'.$ref, 'GET')->getResponse();
     }
 
     public static function chargeAuthorization($data)
     {
-        return (new self)->setHttpResponse('transaction/charge_authorization', 'POST', $data)->getResponse();
+        return (new self)->setHttpResponse('/transaction/charge_authorization', 'POST', $data)->getResponse();
     }
 
     public static function refund($data)
     {
-        return (new self)->setHttpResponse('refund', 'POST', $data)->getResponse();
+        return (new self)->setHttpResponse('/refund', 'POST', $data)->getResponse();
     }
 
     public static function checkAuthorization($data)
     {
-        return (new self)->setHttpResponse('transaction/check_authorization', 'POST', $data)->getResponse();
+        return (new self)->setHttpResponse('/transaction/check_authorization', 'POST', $data)->getResponse();
     }
 
     public static function deactivateAuthorization($auth_code)
     {
         $data = ['authorization_code' => $auth_code];
-        return (new self)->setHttpResponse('deactivate_authorization', 'POST', $data)->getResponse();
+        return (new self)->setHttpResponse('/deactivate_authorization', 'POST', $data)->getResponse();
     }
 
     public static function createSubscription($data)
     {
-        return (new self)->setHttpResponse('subscription', 'POST', $data)->getResponse();
+        return (new self)->setHttpResponse('/subscription', 'POST', $data)->getResponse();
     }
 
     public static function createCustomer($data)
     {
-        return (new self)->setHttpResponse('customer', 'POST', $data)->getResponse();
+        return (new self)->setHttpResponse('/customer', 'POST', $data)->getResponse();
     }
 
     public static function customerSubscriptions($customer_id)
     {
         $data = ['customer' => $customer_id];
-        return (new self)->setHttpResponse('subscription', 'GET', $data)->getData();
+        return (new self)->setHttpResponse('/subscription', 'GET', $data)->getData();
     }
 
     /**
@@ -166,7 +166,7 @@ class PaystackService {
      */
     public static function enableSubscription($data)
     {
-        return (new self)->setHttpResponse('subscription/enable', 'POST', $data)->getResponse();
+        return (new self)->setHttpResponse('/subscription/enable', 'POST', $data)->getResponse();
     }
     /**
      * Disable a subscription using the subscription code and token
@@ -174,51 +174,51 @@ class PaystackService {
      */
     public static function disableSubscription($data)
     {
-        return (new self)->setHttpResponse('subscription/disable', 'POST', $data)->getResponse();
+        return (new self)->setHttpResponse('/subscription/disable', 'POST', $data)->getResponse();
     }
 
     public static function createInvoice($data)
     {
-        return (new self)->setHttpResponse('paymentrequest', 'POST', $data)->getResponse();
+        return (new self)->setHttpResponse('/paymentrequest', 'POST', $data)->getResponse();
     }
 
     public static function fetchInvoices($data)
     {
-        return (new self)->setHttpResponse('paymentrequest', 'GET', $data)->getData();
+        return (new self)->setHttpResponse('/paymentrequest', 'GET', $data)->getData();
     }
     
     public static function findInvoice($invoice_id)
     {
-        return (new self)->setHttpResponse('paymentrequest'. $invoice_id, 'GET', [])->getData();
+        return (new self)->setHttpResponse('/paymentrequest'. $invoice_id, 'GET', [])->getData();
     }
 
     public static function updateInvoice($invoice_id, $data)
     {
-        return (new self)->setHttpResponse('paymentrequest'. $invoice_id, 'PUT', $data)->getResponse();
+        return (new self)->setHttpResponse('/paymentrequest'. $invoice_id, 'PUT', $data)->getResponse();
     }
 
     public static function verifyInvoice($invoice_code)
     {
-        return (new self)->setHttpResponse('paymentrequest/verify'. $invoice_code, 'GET', [])->getData();
+        return (new self)->setHttpResponse('/paymentrequest/verify'. $invoice_code, 'GET', [])->getData();
     }
 
     public static function notifyInvoice($invoice_id)
     {
-        return (new self)->setHttpResponse('paymentrequest/notify'. $invoice_id, 'POST', [])->getResponse();
+        return (new self)->setHttpResponse('/paymentrequest/notify'. $invoice_id, 'POST', [])->getResponse();
     }
 
     public static function finalizeInvoice($invoice_id)
     {
-        return (new self)->setHttpResponse('paymentrequest/finalize'. $invoice_id, 'POST', [])->getResponse();
+        return (new self)->setHttpResponse('/paymentrequest/finalize'. $invoice_id, 'POST', [])->getResponse();
     }
 
     public static function archiveInvoice($invoice_id)
     {
-        return (new self)->setHttpResponse('paymentrequest/archive'. $invoice_id, 'POST', [])->getResponse();
+        return (new self)->setHttpResponse('/paymentrequest/archive'. $invoice_id, 'POST', [])->getResponse();
     }
 
     public static function createPlan($data)
     {
-        return (new self)->setHttpResponse('plan', 'POST', $data)->getData();
+        return (new self)->setHttpResponse('/plan', 'POST', $data)->getData();
     }
 }

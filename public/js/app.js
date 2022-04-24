@@ -39706,7 +39706,7 @@ var paySubscription = function paySubscription(data) {
 
             case 3:
               res = _context3.sent;
-              console.log(res.data);
+              window.location.href = res.data.data.authorization_url;
               _context3.next = 14;
               break;
 
