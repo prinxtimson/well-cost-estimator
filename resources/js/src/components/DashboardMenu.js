@@ -52,12 +52,12 @@ const DashboardMenu = ({ anchorEl, open, handleClose, logoutUser }) => {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-                <Link to="profile">
+                <Link to="settings/profile">
                     <MenuItem>
                         <Avatar /> Profile
                     </MenuItem>
                 </Link>
-                <Link to="change-password">
+                <Link to="settings/change-password">
                     <MenuItem>
                         <ListItemIcon>
                             <LockIcon fontSize="small" />
@@ -66,12 +66,6 @@ const DashboardMenu = ({ anchorEl, open, handleClose, logoutUser }) => {
                     </MenuItem>
                 </Link>
                 <Divider />
-                <MenuItem>
-                    <ListItemIcon>
-                        <Settings fontSize="small" />
-                    </ListItemIcon>
-                    Settings
-                </MenuItem>
                 <MenuItem onClick={logoutUser}>
                     <ListItemIcon>
                         <Logout fontSize="small" />

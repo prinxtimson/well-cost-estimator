@@ -68,7 +68,11 @@ const MainHeader = ({ handleToggleNavMenu, open, anchorEl }) => {
                             </Link>
                         ))}
                         <Link to="/register">
-                            <CustomButton variant="contained" size="small">
+                            <CustomButton
+                                variant="contained"
+                                size="small"
+                                sx={{ color: "#fff" }}
+                            >
                                 Create Account
                             </CustomButton>
                         </Link>

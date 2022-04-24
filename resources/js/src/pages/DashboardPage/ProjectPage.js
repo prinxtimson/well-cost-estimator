@@ -185,7 +185,7 @@ const ProjectPage = ({
                                                         {row.well_cost}
                                                     </StyledTableCell>
                                                     <StyledTableCell align="right">
-                                                        {row.operating_time}
+                                                        {row.operating_time}Days
                                                     </StyledTableCell>
                                                 </StyledTableRow>
                                             );
