@@ -18,6 +18,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/about-us', function () {
+    return view('welcome');
+});
+
+Route::get('/contact-us', function () {
+    return view('welcome');
+});
+
+Route::get('/pricing', function () {
+    return view('welcome');
+});
+
 Route::post('paystack/webhook', [WebhookController::class, 'handleWebhook']);
 
 Route::middleware(['guest'])->group(function () {

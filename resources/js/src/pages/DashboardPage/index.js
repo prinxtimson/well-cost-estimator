@@ -7,6 +7,7 @@ import SingleProjectPage from "./SingleProjectPage";
 import SubscriptionPage from "./SubscriptionPage";
 import BillingPlansPage from "./BillingPlansPage";
 import SettingsPage from "./SettingsPage";
+import AddProjectPage from "./AddProjectPage";
 
 const index = () => {
     return (
@@ -26,6 +27,7 @@ const index = () => {
                         </Routes>
                     }
                 />
+                <Route path="add-project" element={<AddProjectPage />} />
                 <Route path="settings/*" element={<SettingsPage />} />
             </Routes>
         </DashboardContainer>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Subscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
@@ -20,7 +21,7 @@ class SubscriptionController extends Controller
 
     public function show($id)
     {
-        return Subscription::find($id)->load(['user']);
+        return Subscription::find($id);
     }
 
     public function verify($trxref)
@@ -57,5 +58,21 @@ class SubscriptionController extends Controller
 
     }
 
+    public function cards ()
+    {
+        $cards = [];
+        $user = Auth::user();
+        $customer = $user->asPaystackCustomer();
+        $paystackAuthorizations = $customer['authorizations'];
+
+        if (! is_null($paystackAuthorizations)) {
+            foreach ($paystackAuthorizations as $card) {
+                if($card['channel'] == 'card')
+                    $cards[] =  $card;
+            }
+        }
+
+        return $cards;
+    }
 
 }

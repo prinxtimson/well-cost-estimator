@@ -4,12 +4,12 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Link } from "react-router-dom";
 
-import MainContainer from "../../components/MainContainer";
+import Container from "./Container";
 import CustomButton from "../../components/CustomButton";
 
 const index = () => {
     return (
-        <MainContainer>
+        <Container>
             <Grid container>
                 <Grid item md>
                     <Typography
@@ -39,7 +39,7 @@ const index = () => {
                 </Grid>
                 <Grid item md />
             </Grid>
-        </MainContainer>
+        </Container>
     );
 };
 

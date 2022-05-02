@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 
 const Copyright = (props) => {
     return (
-        <Box sx={{ width: "100%", padding: 3, mt: 3 }}>
+        <Box sx={{ width: "100%", padding: 2, mt: 3 }}>
             <Typography variant="body2" align="center" {...props}>
                 {"Copyright © "}
                 <Link color="inherit" href="/">

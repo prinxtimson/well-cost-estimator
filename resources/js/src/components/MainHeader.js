@@ -12,12 +12,20 @@ import Avatar from "@mui/material/Avatar";
 import CustomButton from "./CustomButton";
 import MainMenu from "./MainMenu";
 
-const pages = [{ text: "Login", url: "/login" }];
+const pages = [
+    { text: "About us", url: "/about-us" },
+    { text: "Pricing", url: "/pricing" },
+    { text: "Contact us", url: "/contact-us" },
+];
 
 const MainHeader = ({ handleToggleNavMenu, open, anchorEl }) => {
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" color="transparent" elevation={0}>
+        <Box>
+            <AppBar
+                position="fixed"
+                sx={{ bgcolor: "rgba(245, 248, 251, 0.7)" }}
+                //elevation={0}
+            >
                 <Toolbar>
                     <Link
                         to="/"
@@ -30,59 +38,94 @@ const MainHeader = ({ handleToggleNavMenu, open, anchorEl }) => {
                             sx={{ width: 80, height: 40, marginX: 1 }}
                         />
                         <Typography
+                            color="#000080"
                             variant="h6"
                             noWrap
-                            component="div"
-                            sx={{ color: "#fff" }}
+                            component="h5"
                         >
                             Well Cost Estimator
                         </Typography>
                     </Link>
-                    <Box sx={{ flexGrow: 1 }} />
                     <Box
                         sx={{
-                            flexShrink: 0,
+                            flexGrow: 1,
                             display: { xs: "none", md: "flex" },
                             alignItems: "center",
                         }}
                     >
-                        {pages.map((page) => (
+                        <Box
+                            sx={{
+                                flexGrow: 1,
+                                display: "flex",
+                                alignItems: "center",
+                            }}
+                        >
+                            {pages.map((page) => (
+                                <Link
+                                    key={page.text}
+                                    //onClick={handleCloseNavMenu}
+                                    style={{
+                                        my: 2,
+                                        display: "block",
+                                        margin: "0 10px",
+                                    }}
+                                    to={page.url}
+                                >
+                                    <Typography
+                                        color="#000080"
+                                        variant="div"
+                                        component="h6"
+                                        fontSize={15}
+                                    >
+                                        {page.text}
+                                    </Typography>
+                                </Link>
+                            ))}
+                        </Box>
+                        <Box
+                            sx={{
+                                flexShrink: 0,
+                                display: "flex",
+                                alignItems: "center",
+                            }}
+                        >
                             <Link
-                                key={page.text}
                                 //onClick={handleCloseNavMenu}
                                 style={{
                                     my: 2,
-                                    color: "#fff",
                                     display: "block",
                                     margin: "0 10px",
                                 }}
-                                to={page.url}
+                                to="/login"
                             >
                                 <Typography
                                     variant="div"
+                                    color="#000080"
                                     component="h6"
                                     fontSize={15}
                                 >
-                                    {page.text}
+                                    Login
                                 </Typography>
                             </Link>
-                        ))}
-                        <Link to="/register">
-                            <CustomButton
-                                variant="contained"
-                                size="small"
-                                sx={{ color: "#fff" }}
-                            >
-                                Create Account
-                            </CustomButton>
-                        </Link>
+
+                            <Link to="/register">
+                                <CustomButton
+                                    variant="contained"
+                                    size="small"
+                                    sx={{ color: "#fff" }}
+                                >
+                                    Create Account
+                                </CustomButton>
+                            </Link>
+                        </Box>
                     </Box>
                     <Box
                         sx={{
-                            //flexGrow: 1,
+                            flexGrow: 1,
                             display: { xs: "flex", md: "none" },
                         }}
                     >
+                        <Box sx={{ flexGrow: 1 }} />
                         {open ? (
                             <IconButton
                                 size="large"
@@ -92,7 +135,7 @@ const MainHeader = ({ handleToggleNavMenu, open, anchorEl }) => {
                                 onClick={handleToggleNavMenu}
                                 color="inherit"
                             >
-                                <CloseIcon sx={{ color: "#fff" }} />
+                                <CloseIcon sx={{}} />
                             </IconButton>
                         ) : (
                             <IconButton
@@ -103,7 +146,7 @@ const MainHeader = ({ handleToggleNavMenu, open, anchorEl }) => {
                                 onClick={handleToggleNavMenu}
                                 color="inherit"
                             >
-                                <MenuIcon sx={{ color: "#fff" }} />
+                                <MenuIcon sx={{}} />
                             </IconButton>
                         )}
                     </Box>

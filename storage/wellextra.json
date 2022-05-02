@@ -1,0 +1,184 @@
+[
+    {
+        "name": "Xmas Tree Type",
+        "slug": "xmas-tree-type",
+        "meta": [
+            {
+                "meta_key": "4_1/2_single_x_5k_tree",
+                "meta_value": "150000"
+            },
+            {
+                "meta_key": "4_1/2_single_x_10k_tree",
+                "meta_value": "180000"
+            },
+            {
+                "meta_key": "4_1/2_single_x_15k_tree",
+                "meta_value": "200000"
+            },
+            {
+                "meta_key": "3_1/2_single_x_5k_tree",
+                "meta_value": "110000"
+            },
+            {
+                "meta_key": "3_1/2_dual_x_5k_tree",
+                "meta_value": "129080"
+            },
+            {
+                "meta_key": "2_3/8_dual_x_5k_tree",
+                "meta_value": "95000"
+            }
+        ]
+    },
+    {
+        "name": "Well Heads",
+        "slug": "well-heads",
+        "meta": [
+            {
+                "meta_key": "20_x_13_3/8_x_9_5/8_5k_wh",
+                "meta_value": "250000"
+            },
+            {
+                "meta_key": "20_x_13_3/8_x_9_5/8_10k_wh",
+                "meta_value": "300000"
+            },
+            {
+                "meta_key": "20_x_13_3/8_x_9_5/8_15k_wh",
+                "meta_value": "350000"
+            },
+            {
+                "meta_key": "13_3/8_x_9_5/8_5k_wh",
+                "meta_value": "285000"
+            },
+            {
+                "meta_key": "9_5/8_5k_wh",
+                "meta_value": "250000"
+            }
+        ]
+    },
+    {
+        "name": "Tubing Size",
+        "slug": "tubing_size",
+        "meta": [
+            {
+                "meta_key": "7_13%_chrome_tbg",
+                "meta_value": "120"
+            },
+            {
+                "meta_key": "4_1/2_13%_chrome_tbg",
+                "meta_value": "100"
+            },
+            {
+                "meta_key": "3_1/2_13%_chrome_tbg",
+                "meta_value": "85"
+            },
+            {
+                "meta_key": "5_1/2_hcs_n80_17ppf_tbg",
+                "meta_value": "60"
+            },
+            {
+                "meta_key": "4_1/2_hcs_n80_12.75ppf_tbg",
+                "meta_value": "55"
+            },
+            {
+                "meta_key": "3_1/2_hcs_n80_9.3ppf",
+                "meta_value": "44"
+            },
+            {
+                "meta_key": "2_7/8_hcs_n80_4.7ppf_tbg",
+                "meta_value": "30"
+            },
+            {
+                "meta_key": "2_3/8_hcs_n80_4.7ppf_tbg",
+                "meta_value": "25"
+            }
+        ]
+    },
+    {
+        "name": "Surface Casing",
+        "slug": "surface-casing",
+        "meta": [
+            {
+                "meta_key": "rih_per_hour",
+                "meta_value": "1500"
+            },
+            {
+                "meta_key": "drill_per_hour",
+                "meta_value": "120"
+            },
+            {
+                "meta_key": "poh_per_hour",
+                "meta_value": "1500"
+            },
+            {
+                "meta_key": "casing_cmt_per_hour",
+                "meta_value": "300"
+            }
+        ]
+    },
+    {
+        "name": "Intermediate Casing",
+        "slug": "intermediate-casing",
+        "meta": [
+            {
+                "meta_key": "rih_per_hour",
+                "meta_value": "1500"
+            },
+            {
+                "meta_key": "drill_per_hour",
+                "meta_value": "120"
+            },
+            {
+                "meta_key": "poh_per_hour",
+                "meta_value": "1500"
+            },
+            {
+                "meta_key": "casing_cmt_per_hour",
+                "meta_value": "350"
+            }
+        ]
+    },
+    {
+        "name": "Production Casing",
+        "slug": "production-casing",
+        "meta": [
+            {
+                "meta_key": "rih_per_hour",
+                "meta_value": "1500"
+            },
+            {
+                "meta_key": "drill_per_hour",
+                "meta_value": "120"
+            },
+            {
+                "meta_key": "poh_per_hour",
+                "meta_value": "1200"
+            },
+            {
+                "meta_key": "casing_cmt_per_hour",
+                "meta_value": "450"
+            }
+        ]
+    },
+    {
+        "name": "Liner Casing",
+        "slug": "liner-casing",
+        "meta": [
+            {
+                "meta_key": "rih_per_hour",
+                "meta_value": "1500"
+            },
+            {
+                "meta_key": "drill_per_hour",
+                "meta_value": "120"
+            },
+            {
+                "meta_key": "poh_per_hour",
+                "meta_value": "1500"
+            },
+            {
+                "meta_key": "casing_cmt_per_hour",
+                "meta_value": "300"
+            }
+        ]
+    }
+]

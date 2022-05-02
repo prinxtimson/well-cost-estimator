@@ -6,6 +6,7 @@ import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 
 import ChangePasswordPage from "./ChangePasswordPage";
 import ProfilePage from "./ProfilePage";
+import PaymentMethods from "./PaymentMethods";
 
 const SettingsPage = () => {
     const { pathname } = useLocation();
@@ -28,7 +29,7 @@ const SettingsPage = () => {
                 <Tabs value={value} onChange={handleChange}>
                     <Tab label="Profile" value="profile" />
                     <Tab label="Change Password" value="change-password" />
-                    <Tab label="Payment Method" value="payment-method" />
+                    <Tab label="Payment Methods" value="payment-methods" />
                 </Tabs>
             </Box>
             <Routes>
@@ -38,6 +39,7 @@ const SettingsPage = () => {
                     element={<ChangePasswordPage />}
                 />
                 <Route path="profile" element={<ProfilePage />} />
+                <Route path="payment-methods" element={<PaymentMethods />} />
             </Routes>
         </Box>
     );

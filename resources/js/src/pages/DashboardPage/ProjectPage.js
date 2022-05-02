@@ -60,7 +60,7 @@ const ProjectPage = ({
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const navigate = useNavigate();
 
-    const handleDialogToggle = () => setOpen(!open);
+    const handleDialogToggle = () => navigate("/dashboard/add-project");
 
     const handleSubmit = (data) => createProject(data, handleOnSuccessfull);
 

@@ -12,11 +12,14 @@ import LoginPage from "./pages/LoginPage";
 import RegistrationPage from "./pages/RegistrationPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import DashboardPage from "./pages/DashboardPage";
+import AboutUsPage from "./pages/AboutUsPage";
+import ContactUsPage from "./pages/ContactUsPage";
+import PricingPage from "./pages/PricingPage";
 
 const App = () => {
     const [auth, setAuth] = useState(store.getState().auth);
 
-    React.useEffect(() => {
+    useEffect(() => {
         store.dispatch(loadUser());
     }, []);
 
@@ -33,6 +36,13 @@ const App = () => {
                         element={<DashboardPage />}
                     />
                     <Route exact path="login" element={<LoginPage />} />
+                    <Route
+                        exact
+                        path="contact-us"
+                        element={<ContactUsPage />}
+                    />
+                    <Route exact path="about-us" element={<AboutUsPage />} />
+                    <Route exact path="pricing" element={<PricingPage />} />
                     <Route
                         exact
                         path="register"

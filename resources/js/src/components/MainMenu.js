@@ -9,6 +9,12 @@ import Fade from "@mui/material/Fade";
 import { Link } from "react-router-dom";
 import CustomButton from "./CustomButton";
 
+const pages = [
+    { text: "About us", url: "/about-us" },
+    { text: "Pricing", url: "/pricing" },
+    { text: "Contact us", url: "/contact-us" },
+];
+
 const MainMenu = ({ open, anchorEl }) => {
     const id = open && Boolean(anchorEl) ? "transition-popper" : undefined;
 
@@ -31,6 +37,28 @@ const MainMenu = ({ open, anchorEl }) => {
                         square
                     >
                         <MenuList>
+                            {pages.map((page) => (
+                                <Link
+                                    key={page.text}
+                                    //onClick={handleCloseNavMenu}
+                                    style={{
+                                        my: 2,
+                                        display: "block",
+                                        margin: "0 10px",
+                                    }}
+                                    to={page.url}
+                                >
+                                    <MenuItem>
+                                        <Typography
+                                            variant="div"
+                                            component="h6"
+                                            fontSize={15}
+                                        >
+                                            {page.text}
+                                        </Typography>
+                                    </MenuItem>
+                                </Link>
+                            ))}
                             <Divider />
                             <Link to="/login">
                                 <MenuItem>

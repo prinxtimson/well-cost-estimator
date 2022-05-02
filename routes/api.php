@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\RigController;
 use App\Http\Controllers\SubscriptionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('subscription/{id}', [SubscriptionController::class, 'show']);
     Route::get('subscription/verify/{trxref}', [SubscriptionController::class, 'verify']);
     Route::post('subscription/pay', [SubscriptionController::class, 'pay']);
+    
+    Route::get('card', [SubscriptionController::class, 'cards']);
 });
 
 Route::group(['middleware' => ['auth:sanctum', 'role:admin|super-admin']], function () {
@@ -42,4 +45,9 @@ Route::group(['middleware' => ['auth:sanctum', 'role:admin|super-admin']], funct
     Route::delete('profile/{id}', [ProfileController::class, 'destroy']);
     Route::put('profile/disable/{id}', [ProfileController::class, 'disable']);
     Route::put('profile/enable/{id}', [ProfileController::class, 'enable']);
+
+    Route::get('rigsrate', [RigController::class, 'index']);
+    Route::get('rigsrate/{id}', [RigController::class, 'show']);
+    Route::post('rigsrate', [RigController::class, 'store']);
+    Route::put('rigsrate/{id}', [RigController::class, 'update']);
 });

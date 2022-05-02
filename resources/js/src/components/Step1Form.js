@@ -1,18 +1,59 @@
 import React from "react";
+import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 
-const Step1Form = () => {
+const Step1Form = ({ data, handleOnChange }) => {
     return (
-        <Box>
-            <FormControl fullWidth>
+        <Box sx={{ maxWidth: 380, width: "100%" }}>
+            <TextField
+                margin="dense"
+                required
+                fullWidth
+                name="name"
+                label="Well Name"
+                value={data.name}
+                onChange={handleOnChange}
+            />
+            <TextField
+                margin="dense"
+                required
+                fullWidth
+                name="client"
+                label="Client"
+                value={data.client}
+                onChange={handleOnChange}
+            />
+            <FormControl fullWidth sx={{ mb: 0.5, mt: 1 }}>
+                <InputLabel id="rig-type-select-label">Job Type</InputLabel>
+                <Select
+                    labelId="job-type-select-label"
+                    name="job_type"
+                    value={data.job_type}
+                    label="Job Type"
+                    onChange={handleOnChange}
+                >
+                    {[
+                        "Drilling",
+                        "Drilling and Completion",
+                        "Initial Completion",
+                        "Workover",
+                        "Rigless Workover",
+                    ].map((text) => (
+                        <MenuItem value={text} key={text}>
+                            {text}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+            <FormControl fullWidth sx={{ mb: 0.5, mt: 1 }}>
                 <InputLabel id="rig-type-select-label">Rig Type</InputLabel>
                 <Select
                     labelId="rig-type-select-label"
-                    id="rig_type"
+                    name="rig_type"
                     value={data.rig_type}
                     label="Rig Type"
                     onChange={handleOnChange}
@@ -30,13 +71,15 @@ const Step1Form = () => {
                     ))}
                 </Select>
             </FormControl>
-            <FormControl fullWidth>
-                <InputLabel id="location-select-label">Location</InputLabel>
+            <FormControl fullWidth sx={{ mb: 0.5, mt: 1 }}>
+                <InputLabel id="location-select-label">
+                    Well Location
+                </InputLabel>
                 <Select
                     labelId="location-select-label"
-                    id="location"
-                    value={data.location}
-                    label="Location"
+                    name="well_location"
+                    value={data.well_location}
+                    label="Well Location"
                     onChange={handleOnChange}
                 >
                     {["Land", "Swamp", "Water"].map((text) => (
@@ -52,29 +95,9 @@ const Step1Form = () => {
                 fullWidth
                 name="rig_move_time"
                 label="Rig Move Time"
-                value={data.name}
+                value={data.rig_move_time}
                 onChange={handleOnChange}
             />
-            <FormControl fullWidth>
-                <InputLabel id="well-head-type-select-label">
-                    Well Head Type
-                </InputLabel>
-                <Select
-                    labelId="well-head-type-select-label"
-                    id="well_head_type_type"
-                    value={data.well_head_type}
-                    label="Well Head Type"
-                    onChange={handleOnChange}
-                >
-                    {['20 x 13 3/8" x 9 5/8" - 5K WH', "Swamp", "Water"].map(
-                        (text) => (
-                            <MenuItem value={text} key={text}>
-                                {text}
-                            </MenuItem>
-                        )
-                    )}
-                </Select>
-            </FormControl>
         </Box>
     );
 };

@@ -66,7 +66,7 @@ const AuthContainer = ({ children, alerts }) => {
                     </Link>
                 </Box>
                 <Container maxWidth="xs">{children}</Container>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
+                <Copyright sx={{ mt: 2, mb: 2 }} />
             </Container>
         </ThemeProvider>
     );

@@ -288,7 +288,8 @@ trait Billable
     public function cards($parameters = [])
     {
         $cards = [];
-        $paystackAuthorizations = $this->asPaystackCustomer()->authorizations;
+        $customer = $this->asPaystackCustomer();
+        $paystackAuthorizations = $customer['authorizations'];
         if (! is_null($paystackAuthorizations)) {
             foreach ($paystackAuthorizations as $card) {
                 if($card['channel'] == 'card')

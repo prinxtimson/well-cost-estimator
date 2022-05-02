@@ -5,11 +5,13 @@ import {
     CLEAR_SUBSCRIPTION,
     SUBSCRIPTION_LOADING,
     UPDATE_SUBSCRIPTION,
+    GET_CARDS,
 } from "../actions/types";
 
 const initialState = {
     subscription: null,
     subscriptions: {},
+    cards: [],
     loading: true,
 };
 
@@ -27,6 +29,12 @@ export default (state = initialState, actions) => {
             return {
                 ...state,
                 subscriptions: payload,
+                loading: false,
+            };
+        case GET_CARDS:
+            return {
+                ...state,
+                cards: payload,
                 loading: false,
             };
         case GET_SUBSCRIPTION:
@@ -56,6 +64,7 @@ export default (state = initialState, actions) => {
                 subscriptions: {},
                 loading: true,
                 subscription: null,
+                cards: [],
             };
         default:
             return state;

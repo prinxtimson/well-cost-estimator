@@ -7,6 +7,7 @@ import {
     CLEAR_SUBSCRIPTION,
     SUBSCRIPTION_LOADING,
     UPDATE_SUBSCRIPTION,
+    GET_CARDS,
 } from "./types";
 
 //get all project
@@ -38,6 +39,27 @@ export const getSubscriptionByID = (id) => async (dispatch) => {
 
         dispatch({
             type: GET_SUBSCRIPTION,
+            payload: res.data,
+        });
+    } catch (err) {
+        console.log(err.response);
+        dispatch({ type: SUBSCRIPTION_ERROR });
+        if (err.response.status === 500) {
+            return dispatch(
+                setAlert("Server errror, please try again.", "error")
+            );
+        }
+
+        dispatch(setAlert(err.response.data.message, "error"));
+    }
+};
+
+export const getPaymentMethods = () => async (dispatch) => {
+    try {
+        const res = await axios.get("/api/card");
+
+        dispatch({
+            type: GET_CARDS,
             payload: res.data,
         });
     } catch (err) {
