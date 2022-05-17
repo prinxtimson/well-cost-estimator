@@ -23,8 +23,9 @@ const LoginForm = ({ loading, loginUser }) => {
         setData({ ...data, [e.target.name]: e.target.value });
 
     const handleSubmit = (e) => {
+        const { email, password } = data;
         e.preventDefault();
-        loginUser(data);
+        loginUser({ email: email.trim(), password });
     };
 
     return (

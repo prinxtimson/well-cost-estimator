@@ -53,7 +53,7 @@ const Pricing = () => {
                                             variant="h3"
                                             color="text.primary"
                                         >
-                                            #{tier.price}
+                                            N{tier.price}
                                         </Typography>
                                         <Typography
                                             variant="h6"

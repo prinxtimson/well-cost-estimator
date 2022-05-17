@@ -5,9 +5,13 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
 
 const Step2Form = ({ data, handleOnChange }) => {
+    const [state, setState] = React.useState([])
+    const [from, setFrom] = React.useState('')
+    const [to, setTo] = React.useState('')
     return (
         <Box sx={{ maxWidth: 750, width: "100%" }}>
             <Grid container spacing={2}>
@@ -404,6 +408,70 @@ const Step2Form = ({ data, handleOnChange }) => {
                             </FormControl>
                         </Grid>
                     </>
+                )}
+
+            </Grid>
+            <Grid container spacing={2}>
+                {data.igp_required === 'YES' && (
+                    <Grid item>
+                        <Typography>IGP Required Form</Typography>
+                        <Box>
+                        <FormControl fullWidth>
+                                <InputLabel id="type-of-perforating-label">
+                                    Type of Perforating
+                                </InputLabel>
+                                <Select
+                                    labelId="type-of-perforating-label"
+                                    name="type_of_perforating"
+                                    value={data.type_of_perforating}
+                                    label="Type of Perforating"
+                                    onChange={handleOnChange}
+                                >
+                                    {["Wireline", "TCP/DST"].map((text) => (
+                                        <MenuItem value={text} key={text}>
+                                            {text}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Box>
+                        <Grid container spacing>
+                            <Grid item>
+                                <Typography>Zone Length, MD(ft)</Typography>
+                            </Grid>
+                            <Grid item>
+                            <TextField
+                                margin="none"
+                                required
+                                fullWidth
+                                name="from"
+                                label="From (ft)"
+                                value={from}
+                               // onChange={handleOnChange}
+                            />
+                            </Grid>
+                            <Grid item>
+                            <TextField
+                                margin="none"
+                                required
+                                fullWidth
+                                name="to"
+                                label="To (ft)"
+                                value={to}
+                                //onChange={handleOnChange}
+                            />
+                            </Grid>
+                            <Grid item>
+                            <Button
+                                color="inherit"
+                                //onClick={handleBack}
+                                sx={{ mr: 1 }}
+                            >
+                                Add
+                            </Button>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 )}
             </Grid>
         </Box>
