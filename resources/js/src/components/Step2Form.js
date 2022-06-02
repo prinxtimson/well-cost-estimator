@@ -7,11 +7,13 @@ import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Select from "@mui/material/Select";
+import IconButton from "@mui/material/IconButton";
+import PlusIcon from "@mui/icons-material/AddCircle";
 
 const Step2Form = ({ data, handleOnChange }) => {
-    const [state, setState] = React.useState([])
-    const [from, setFrom] = React.useState('')
-    const [to, setTo] = React.useState('')
+    const [arr, setArr] = React.useState([]);
+    const [from, setFrom] = React.useState("");
+    const [to, setTo] = React.useState("");
     return (
         <Box sx={{ maxWidth: 750, width: "100%" }}>
             <Grid container spacing={2}>
@@ -29,6 +31,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     value={data.well_head_type}
                                     label="Well Head Type"
                                     onChange={handleOnChange}
+                                    size="small"
                                 >
                                     {[
                                         "20 x 13-3/8 x 9-5/8 - 5k WH",
@@ -56,6 +59,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                 label="Surface Casing Depth (ft)"
                                 value={data.surface_casing_depth}
                                 onChange={handleOnChange}
+                                size="small"
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -67,6 +71,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                 label="Intermmediate Casing Depth (ft)"
                                 value={data.intermmediate_casing_depth}
                                 onChange={handleOnChange}
+                                size="small"
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -80,6 +85,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     value={data.coring_required}
                                     label="Coring Required"
                                     onChange={handleOnChange}
+                                    size="small"
                                 >
                                     {["YES", "NO"].map((text) => (
                                         <MenuItem value={text} key={text}>
@@ -101,6 +107,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                         label="Production Casing Depth (ft)"
                         value={data.production_casing_depth}
                         onChange={handleOnChange}
+                        size="small"
                     />
                 </Grid>
                 {data.job_type === "Drilling" && (
@@ -113,6 +120,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                             label="Liner Depth (ft)"
                             value={data.liner_depth}
                             onChange={handleOnChange}
+                            size="small"
                         />
                     </Grid>
                 )}
@@ -127,6 +135,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                 label="Liner Top Depth (ft)"
                                 value={data.liner_top_depth}
                                 onChange={handleOnChange}
+                                size="small"
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -138,6 +147,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                 label="Liner Bottom Depth (ft)"
                                 value={data.liner_bottom_depth}
                                 onChange={handleOnChange}
+                                size="small"
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
@@ -149,6 +159,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                 label="Total Well Depth (ft)"
                                 value={data.total_well_depth}
                                 onChange={handleOnChange}
+                                size="small"
                             />
                         </Grid>
                     </>
@@ -164,6 +175,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                             value={data.well_deviation}
                             label="Well Deviation"
                             onChange={handleOnChange}
+                            size="small"
                         >
                             {[
                                 "Vertical",
@@ -191,6 +203,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     value={data.completions_type}
                                     label="Completions Type"
                                     onChange={handleOnChange}
+                                    size="small"
                                 >
                                     {[
                                         "Single",
@@ -216,6 +229,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     value={data.igp_required}
                                     label="IGP Required?"
                                     onChange={handleOnChange}
+                                    size="small"
                                 >
                                     {["YES", "NO"].map((text) => (
                                         <MenuItem value={text} key={text}>
@@ -224,6 +238,99 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     ))}
                                 </Select>
                             </FormControl>
+
+                            <Box
+                                sx={{
+                                    display:
+                                        data.igp_required === "YES"
+                                            ? "block"
+                                            : "none",
+                                    padding: 2,
+                                }}
+                            >
+                                <FormControl fullWidth>
+                                    <InputLabel id="type-of-perforating-select-label">
+                                        Type of Perforating
+                                    </InputLabel>
+                                    <Select
+                                        labelId="type-of-perforating-select-label"
+                                        name="type_of_perforating"
+                                        value={data.type_of_perforating}
+                                        label="Type of Perforating"
+                                        onChange={handleOnChange}
+                                        size="small"
+                                    >
+                                        {["Wireline", "TCP/DST"].map((text) => (
+                                            <MenuItem value={text} key={text}>
+                                                {text}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                </FormControl>
+                                {arr.map((val, ind) => (
+                                    <Grid container>
+                                        <Grid item xs={4}>
+                                            Zone {ind} Length, MD
+                                        </Grid>
+                                        <Grid item xs={3}>
+                                            <TextField
+                                                margin="dense"
+                                                fullWidth
+                                                name="from"
+                                                label="From"
+                                                value={data.from}
+                                                onChange={handleOnChange}
+                                                size="small"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={3}>
+                                            <TextField
+                                                margin="dense"
+                                                fullWidth
+                                                name="to"
+                                                label="To"
+                                                value={data.to}
+                                                onChange={handleOnChange}
+                                                size="small"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            <FormControl fullWidth>
+                                                <InputLabel id="igp-select-label">
+                                                    IGP
+                                                </InputLabel>
+                                                <Select
+                                                    labelId="igp-select-label"
+                                                    name="igp"
+                                                    value={val.igp}
+                                                    label="IGP"
+                                                    onChange={handleOnChange}
+                                                    size="small"
+                                                >
+                                                    {["YES", "NO"].map(
+                                                        (text) => (
+                                                            <MenuItem
+                                                                value={text}
+                                                                key={text}
+                                                            >
+                                                                {text}
+                                                            </MenuItem>
+                                                        )
+                                                    )}
+                                                </Select>
+                                            </FormControl>
+                                        </Grid>
+                                    </Grid>
+                                ))}
+
+                                <IconButton
+                                    color="primary"
+                                    aria-label="add"
+                                    component="span"
+                                >
+                                    <PlusIcon />
+                                </IconButton>
+                            </Box>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <FormControl fullWidth>
@@ -236,6 +343,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     value={data.well_test_required}
                                     label="Well Test Required?"
                                     onChange={handleOnChange}
+                                    size="small"
                                 >
                                     {["YES", "NO"].map((text) => (
                                         <MenuItem value={text} key={text}>
@@ -244,6 +352,78 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     ))}
                                 </Select>
                             </FormControl>
+                            <Box
+                                sx={{
+                                    display:
+                                        data.well_test_required === "YES"
+                                            ? "block"
+                                            : "none",
+                                    padding: 2,
+                                }}
+                            >
+                                {arr.map((val, ind) => (
+                                    <Grid container>
+                                        <Grid item xs={4}>
+                                            Zone {ind} Length, MD
+                                        </Grid>
+                                        <Grid item xs={3}>
+                                            <TextField
+                                                margin="dense"
+                                                fullWidth
+                                                name="from"
+                                                label="From"
+                                                value={val.from}
+                                                onChange={handleOnChange}
+                                                size="small"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={3}>
+                                            <TextField
+                                                margin="dense"
+                                                fullWidth
+                                                name="to"
+                                                label="To"
+                                                value={val.to}
+                                                onChange={handleOnChange}
+                                                size="small"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={2}>
+                                            <FormControl fullWidth>
+                                                <InputLabel id="tcp-dst-select-label">
+                                                    TCP/DST
+                                                </InputLabel>
+                                                <Select
+                                                    labelId="tcp-dst-select-label"
+                                                    name="tcp_dst"
+                                                    value={val.tcp_dst}
+                                                    label="TCP/DST"
+                                                    onChange={handleOnChange}
+                                                    size="small"
+                                                >
+                                                    {["YES", "NO"].map(
+                                                        (text) => (
+                                                            <MenuItem
+                                                                value={text}
+                                                                key={text}
+                                                            >
+                                                                {text}
+                                                            </MenuItem>
+                                                        )
+                                                    )}
+                                                </Select>
+                                            </FormControl>
+                                        </Grid>
+                                    </Grid>
+                                ))}
+                                <IconButton
+                                    color="primary"
+                                    aria-label="add"
+                                    component="span"
+                                >
+                                    <PlusIcon />
+                                </IconButton>
+                            </Box>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <FormControl fullWidth>
@@ -256,6 +436,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     value={data.cement_squeeze_required}
                                     label="Cement Squeeze Required?"
                                     onChange={handleOnChange}
+                                    size="small"
                                 >
                                     {["YES", "NO"].map((text) => (
                                         <MenuItem value={text} key={text}>
@@ -276,6 +457,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     value={data.ct_nitrogen_lift}
                                     label="CT Nitrogen Lift?"
                                     onChange={handleOnChange}
+                                    size="small"
                                 >
                                     {["YES", "NO"].map((text) => (
                                         <MenuItem value={text} key={text}>
@@ -299,6 +481,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                 value={data.xmas_tree_type}
                                 label="Xmas Tree Type"
                                 onChange={handleOnChange}
+                                size="small"
                             >
                                 {[
                                     '4-1/2" Single  X 5k Tree',
@@ -333,6 +516,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     value={data.liner_casing_in_well}
                                     label="Liner Casing in Well?"
                                     onChange={handleOnChange}
+                                    size="small"
                                 >
                                     {["YES", "NO"].map((text) => (
                                         <MenuItem value={text} key={text}>
@@ -353,6 +537,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     value={data.cement_plug_inside_well}
                                     label="Cement Plug Inside Well?"
                                     onChange={handleOnChange}
+                                    size="small"
                                 >
                                     {["YES", "NO"].map((text) => (
                                         <MenuItem value={text} key={text}>
@@ -378,6 +563,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     value={data.packer_milling_required}
                                     label="Packer Milling Required?"
                                     onChange={handleOnChange}
+                                    size="small"
                                 >
                                     {["YES", "NO"].map((text) => (
                                         <MenuItem value={text} key={text}>
@@ -398,6 +584,7 @@ const Step2Form = ({ data, handleOnChange }) => {
                                     value={data.retrieve_existing_igp}
                                     label="Retrieve Existing IGP?"
                                     onChange={handleOnChange}
+                                    size="small"
                                 >
                                     {["YES", "NO"].map((text) => (
                                         <MenuItem value={text} key={text}>
@@ -408,70 +595,6 @@ const Step2Form = ({ data, handleOnChange }) => {
                             </FormControl>
                         </Grid>
                     </>
-                )}
-
-            </Grid>
-            <Grid container spacing={2}>
-                {data.igp_required === 'YES' && (
-                    <Grid item>
-                        <Typography>IGP Required Form</Typography>
-                        <Box>
-                        <FormControl fullWidth>
-                                <InputLabel id="type-of-perforating-label">
-                                    Type of Perforating
-                                </InputLabel>
-                                <Select
-                                    labelId="type-of-perforating-label"
-                                    name="type_of_perforating"
-                                    value={data.type_of_perforating}
-                                    label="Type of Perforating"
-                                    onChange={handleOnChange}
-                                >
-                                    {["Wireline", "TCP/DST"].map((text) => (
-                                        <MenuItem value={text} key={text}>
-                                            {text}
-                                        </MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                        </Box>
-                        <Grid container spacing>
-                            <Grid item>
-                                <Typography>Zone Length, MD(ft)</Typography>
-                            </Grid>
-                            <Grid item>
-                            <TextField
-                                margin="none"
-                                required
-                                fullWidth
-                                name="from"
-                                label="From (ft)"
-                                value={from}
-                               // onChange={handleOnChange}
-                            />
-                            </Grid>
-                            <Grid item>
-                            <TextField
-                                margin="none"
-                                required
-                                fullWidth
-                                name="to"
-                                label="To (ft)"
-                                value={to}
-                                //onChange={handleOnChange}
-                            />
-                            </Grid>
-                            <Grid item>
-                            <Button
-                                color="inherit"
-                                //onClick={handleBack}
-                                sx={{ mr: 1 }}
-                            >
-                                Add
-                            </Button>
-                            </Grid>
-                        </Grid>
-                    </Grid>
                 )}
             </Grid>
         </Box>

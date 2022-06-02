@@ -45,27 +45,25 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
         flexGrow: 1,
         display: "flex",
         flexDirection: "column",
+        marginLeft: 0,
         padding: theme.spacing(0),
-        [theme.breakpoints.up("lg")]: {
-            marginLeft: 0,
-        },
         [theme.breakpoints.up("md")]: {
-            transition: theme.transitions.create("margin", {
+            transition: theme.transitions.create(["margin", "width"], {
                 easing: theme.transitions.easing.easeOut,
                 duration: theme.transitions.duration.enteringScreen,
             }),
-            marginLeft: 0,
+            width: `calc(100% - ${drawerWidth}px)`,
         },
-        transition: theme.transitions.create("margin", {
+        transition: theme.transitions.create(["margin", "width"], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
         ...(open && {
-            transition: theme.transitions.create("margin", {
+            transition: theme.transitions.create(["margin", "width"], {
                 easing: theme.transitions.easing.easeOut,
                 duration: theme.transitions.duration.enteringScreen,
             }),
-            marginLeft: `${drawerWidth}px`,
+            width: `calc(100% - ${drawerWidth}px)`,
         }),
     })
 );

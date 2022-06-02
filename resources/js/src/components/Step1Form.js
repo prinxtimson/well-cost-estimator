@@ -17,6 +17,7 @@ const Step1Form = ({ data, handleOnChange }) => {
                 label="Well Name"
                 value={data.name}
                 onChange={handleOnChange}
+                size="small"
             />
             <TextField
                 margin="dense"
@@ -26,6 +27,7 @@ const Step1Form = ({ data, handleOnChange }) => {
                 label="Client"
                 value={data.client}
                 onChange={handleOnChange}
+                size="small"
             />
             <FormControl fullWidth sx={{ mb: 0.5, mt: 1 }}>
                 <InputLabel id="rig-type-select-label">Job Type</InputLabel>
@@ -35,6 +37,7 @@ const Step1Form = ({ data, handleOnChange }) => {
                     value={data.job_type}
                     label="Job Type"
                     onChange={handleOnChange}
+                    size="small"
                 >
                     {[
                         "Drilling",
@@ -57,6 +60,7 @@ const Step1Form = ({ data, handleOnChange }) => {
                     value={data.rig_type}
                     label="Rig Type"
                     onChange={handleOnChange}
+                    size="small"
                 >
                     {[
                         "Heavy Land Rig",
@@ -81,6 +85,7 @@ const Step1Form = ({ data, handleOnChange }) => {
                     value={data.well_location}
                     label="Well Location"
                     onChange={handleOnChange}
+                    size="small"
                 >
                     {["Land", "Swamp", "Water"].map((text) => (
                         <MenuItem value={text} key={text}>
@@ -97,6 +102,7 @@ const Step1Form = ({ data, handleOnChange }) => {
                 label="Rig Move Time"
                 value={data.rig_move_time}
                 onChange={handleOnChange}
+                size="small"
             />
         </Box>
     );
