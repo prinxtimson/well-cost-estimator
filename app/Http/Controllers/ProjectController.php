@@ -42,8 +42,9 @@ class ProjectController extends Controller
         $user = auth()->user();
 
         $fields = $request->validate([
-            'name' => 'required|string',
-            'description' => 'string'
+            'name' => 'required|string', 
+            'description' => 'string',
+            'client' => 'required|string'
         ]);
 
         $fields['well_cost'] = '0.00';
@@ -51,7 +52,29 @@ class ProjectController extends Controller
 
         $project = $user->projects()->create($fields);
 
-        return $project;
+        $metas = $request->except(['name', 'description', 'client', 'timeline']);
+
+        $timeline = $request->input('timeline');
+
+        foreach ($metas as $key => $value) {
+            # code...
+            $project->project_meta()->create([
+                'meta_key' => $key,
+                'meta_value' => json_encode($value) 
+            ]);
+        }
+
+        foreach($timeline as $key => $value){
+            if(!isset($value['total'])){
+                $total = $value['rih'] + $value['drill'] + $value['circulate'] + $value['poh'] + $value['casing'] + $value['wh_work'];
+
+                $value['total'] = $total;
+            }
+            
+            $project->project_timeline()->create($value);
+        }
+
+        return $project->load(['project_meta']);
     }
 
     /**
@@ -62,7 +85,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        return Project::find($id)->load(['project_meta']);
+        return Project::find($id)->load(['project_meta', 'project_timeline']);
     }
 
     /**

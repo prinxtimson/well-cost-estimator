@@ -14,9 +14,11 @@ class ProjectTimeline extends Model
         'depth',
         'rih',
         'drill',
+        'circulate',
         'poh',
         'casing',
-        'wh_work'
+        'wh_work',
+        'total'
     ];
 
     public function project ()

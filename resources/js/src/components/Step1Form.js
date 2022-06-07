@@ -8,14 +8,14 @@ import Select from "@mui/material/Select";
 
 const Step1Form = ({ data, handleOnChange }) => {
     return (
-        <Box sx={{ maxWidth: 380, width: "100%" }}>
+        <Box sx={{ maxWidth: 420, width: "100%" }}>
             <TextField
                 margin="dense"
                 required
                 fullWidth
                 name="name"
                 label="Well Name"
-                value={data.name}
+                value={data.name || ""}
                 onChange={handleOnChange}
                 size="small"
             />
@@ -25,7 +25,7 @@ const Step1Form = ({ data, handleOnChange }) => {
                 fullWidth
                 name="client"
                 label="Client"
-                value={data.client}
+                value={data.client || ""}
                 onChange={handleOnChange}
                 size="small"
             />
@@ -34,7 +34,7 @@ const Step1Form = ({ data, handleOnChange }) => {
                 <Select
                     labelId="job-type-select-label"
                     name="job_type"
-                    value={data.job_type}
+                    value={data.job_type || ""}
                     label="Job Type"
                     onChange={handleOnChange}
                     size="small"
@@ -57,17 +57,24 @@ const Step1Form = ({ data, handleOnChange }) => {
                 <Select
                     labelId="rig-type-select-label"
                     name="rig_type"
-                    value={data.rig_type}
+                    value={data.rig_type || ""}
                     label="Rig Type"
                     onChange={handleOnChange}
                     size="small"
                 >
                     {[
+                        "Med1 Light Land Rig",
                         "Heavy Land Rig",
                         "Light Land Rig",
-                        "Medium Light Land Rig",
+                        "Med Light Land Rig",
                         "Heavy Swamp Rig",
                         "Light Swamp Rig",
+                        "Jack UP 01 (160K)",
+                        "Jack UP 02 (180K)",
+                        "Floaters (3000FT - 4000FT)",
+                        "Floaters (4000FT - 6000FT)",
+                        "Floaters (6000FT+)",
+                        "HWU",
                     ].map((text) => (
                         <MenuItem value={text} key={text}>
                             {text}
@@ -82,12 +89,36 @@ const Step1Form = ({ data, handleOnChange }) => {
                 <Select
                     labelId="location-select-label"
                     name="well_location"
-                    value={data.well_location}
+                    value={data.well_location || ""}
                     label="Well Location"
                     onChange={handleOnChange}
                     size="small"
                 >
                     {["Land", "Swamp", "Water"].map((text) => (
+                        <MenuItem value={text} key={text}>
+                            {text}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+            <FormControl fullWidth sx={{ mb: 0.5, mt: 1 }}>
+                <InputLabel id="well-deviation-select-label">
+                    Well Deviation
+                </InputLabel>
+                <Select
+                    labelId="well-deviation-select-label"
+                    name="well_deviation"
+                    value={data.well_deviation || ""}
+                    label="Well Deviation"
+                    onChange={handleOnChange}
+                    size="small"
+                >
+                    {[
+                        "Vertical",
+                        "Deviation < 45 deg",
+                        "Deviation > 45 deg",
+                        "Horizontal",
+                    ].map((text) => (
                         <MenuItem value={text} key={text}>
                             {text}
                         </MenuItem>
@@ -100,7 +131,18 @@ const Step1Form = ({ data, handleOnChange }) => {
                 fullWidth
                 name="rig_move_time"
                 label="Rig Move Time"
-                value={data.rig_move_time}
+                value={data.rig_move_time || ""}
+                onChange={handleOnChange}
+                size="small"
+            />
+
+            <TextField
+                margin="dense"
+                required
+                fullWidth
+                name="production_casing"
+                label="Production Casing Depth (ft)"
+                value={data.production_casing || ""}
                 onChange={handleOnChange}
                 size="small"
             />

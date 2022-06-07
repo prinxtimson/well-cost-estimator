@@ -66,7 +66,7 @@ export const createProject =
                 type: PROJECT_LOADING,
             });
 
-            handleOnSuccessfull(res.data);
+            handleOnSuccessfull(res.data.id);
         } catch (err) {
             console.log(err.response);
             dispatch({ type: PROJECT_ERROR });

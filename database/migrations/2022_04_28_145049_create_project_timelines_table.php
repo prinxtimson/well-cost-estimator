@@ -21,9 +21,11 @@ class CreateProjectTimelinesTable extends Migration
             $table->double('depth')->default(0);
             $table->double('rih')->default(0);
             $table->double('drill')->default(0);
+            $table->double('circulate')->default(0);
             $table->double('poh')->default(0);
             $table->double('casing')->default(0);
             $table->double('wh_work')->default(0);
+            $table->string('total')->nullable();
             $table->timestamps();
         });
     }

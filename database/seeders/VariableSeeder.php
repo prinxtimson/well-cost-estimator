@@ -14,8 +14,8 @@ class VariableSeeder extends Seeder
      */
     public function run()
     {
-        $path = storage_path() . './wellextra.json';
-        $extras = json_decode(\file_get_contents($path), true);
+        $path = storage_path() . '/wellextra.json';
+        $extras = json_decode(file_get_contents($path), true);
 
         foreach($extras as $extra){
             $metas = $extra['meta'];

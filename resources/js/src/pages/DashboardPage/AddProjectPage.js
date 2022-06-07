@@ -10,18 +10,175 @@ import Typography from "@mui/material/Typography";
 
 import Step1Form from "../../components/Step1Form";
 import Step2Form from "../../components/Step2Form";
+import { connect } from "react-redux";
+
+import {
+    createProject,
+    getAllProjects,
+    clearProject,
+} from "../../actions/project";
+import { useNavigate } from "react-router-dom";
+import { calcTimeline } from "../../utils/timeline";
 
 const steps = ["Step 1", "Step 2"];
 
-const AddProjectPage = () => {
+const AddProjectPage = ({
+    loading,
+    createProject,
+    getAllProjects,
+    clearProject,
+}) => {
     const [activeStep, setActiveStep] = React.useState(0);
     const [data, setData] = React.useState({
         name: "",
-        description: "",
+        description: "description",
     });
+    const navigate = useNavigate();
 
-    const handleOnChange = (e) =>
-        setData({ ...data, [e.target.name]: e.target.value });
+    React.useEffect(() => {
+        getAllProjects();
+
+        return clearProject;
+    }, []);
+
+    const handleOnChange = (e) => {
+        if (
+            ["length_of_core_section", "no_of_core_runs"].includes(
+                e.target.name
+            )
+        ) {
+            setData({
+                ...data,
+                coring_info: {
+                    ...data.coring_info,
+                    [e.target.name]: e.target.value,
+                },
+            });
+        } else if (e.target.name === "coring_required") {
+            if (e.target.value === "YES") {
+                setData({
+                    ...data,
+                    [e.target.name]: e.target.value,
+                    coring_info: {},
+                });
+            } else
+                setData({
+                    ...data,
+                    [e.target.name]: e.target.value,
+                    coring_info: null,
+                });
+        } else if (e.target.name === "completions_type") {
+            setData({
+                ...data,
+                [e.target.name]: e.target.value,
+                completions_type_info: {},
+            });
+        } else if (
+            [
+                "ct_xmas_tree_type",
+                "turbing_size",
+                "turbing_length",
+                "turbing_size_ls",
+                "turbing_length_ls",
+                "turbing_size_ss",
+                "turbing_length_ss",
+            ].includes(e.target.name)
+        ) {
+            setData({
+                ...data,
+                completions_type_info: {
+                    ...data.completions_type_info,
+                    [e.target.name]: e.target.value,
+                },
+            });
+        } else if (e.target.name === "igp_required") {
+            if (e.target.value === "YES") {
+                setData({
+                    ...data,
+                    [e.target.name]: e.target.value,
+                    igp_info: {
+                        type_of_perforating: "",
+                        zones: [{}, {}, {}],
+                    },
+                });
+            } else
+                setData({
+                    ...data,
+                    [e.target.name]: e.target.value,
+                    igp_info: null,
+                });
+        } else if (e.target.name === "type_of_perforating") {
+            setData({
+                ...data,
+                igp_info: { ...data.igp_info, [e.target.name]: e.target.value },
+            });
+        } else if (e.target.name === "well_test_required") {
+            if (e.target.value === "YES") {
+                setData({
+                    ...data,
+                    [e.target.name]: e.target.value,
+                    well_test_info: [{}, {}, {}],
+                });
+            } else
+                setData({
+                    ...data,
+                    [e.target.name]: e.target.value,
+                    well_test_info: null,
+                });
+        } else {
+            setData({ ...data, [e.target.name]: e.target.value });
+        }
+    };
+
+    const handleIgpInfoChange = (e, index) => {
+        let igpInfo = data.igp_info.zones;
+        igpInfo[index][e.target.name] = e.target.value;
+        setData({ ...data, igp_info: { ...data.igp_info, zones: igpInfo } });
+    };
+
+    const handleWellTestInfoChange = (e, index) => {
+        let well_test_info = data.well_test_info;
+        well_test_info[index][e.target.name] = e.target.value;
+        setData({ ...data, well_test_info });
+    };
+
+    // const add = (param) => {
+    //     if (param === "igp") {
+    //         setData({
+    //             ...data,
+    //             igp_info: {
+    //                 ...data.igp_info,
+    //                 zones: [
+    //                     ...data.igp_info.zones,
+    //                     { from: "", to: "", igp: "" },
+    //                 ],
+    //             },
+    //         });
+    //     } else {
+    //         setData({
+    //             ...data,
+    //             well_test_info: [
+    //                 ...data.well_test_info,
+    //                 { from: "", to: "", tcp_dst: "" },
+    //             ],
+    //         });
+    //     }
+    // };
+
+    // const remove = (param, index) => {
+    //     if (param === "igp") {
+    //         let igp_arr = data.igp_info.zones;
+    //         igp_arr.splice(index, 1);
+    //         setData({
+    //             ...data,
+    //             igp_info: { ...data.igp_info, zones: [...igp_arr] },
+    //         });
+    //     } else {
+    //         let well_test_arr = data.well_test_info;
+    //         well_test_arr.splice(index, 1);
+    //         setData({ ...data, well_test_info: [...well_test_arr] });
+    //     }
+    // };
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -49,6 +206,16 @@ const AddProjectPage = () => {
             rig_move_time;
 
         return result;
+    };
+
+    const handleSubmit = () => {
+        const timeline = calcTimeline(data);
+        createProject({ ...data, timeline }, handleOnSuccessfull);
+    };
+
+    const handleOnSuccessfull = (id) => {
+        setData({ name: "", description: "" });
+        navigate(`/dashboard/project/${id}`);
     };
 
     return (
@@ -83,6 +250,12 @@ const AddProjectPage = () => {
                                 <Step2Form
                                     data={data}
                                     handleOnChange={handleOnChange}
+                                    // add={add}
+                                    // remove={remove}
+                                    handleIgpInfoChange={handleIgpInfoChange}
+                                    handleWellTestInfoChange={
+                                        handleWellTestInfoChange
+                                    }
                                 />
                             )}
                         </Box>
@@ -103,14 +276,21 @@ const AddProjectPage = () => {
                                 Back
                             </Button>
                             <Box sx={{ flex: "1 1 auto" }} />
-                            <Button
-                                onClick={handleNext}
-                                disabled={!isStep1Complete()}
-                            >
-                                {activeStep === steps.length - 1
-                                    ? "Finish"
-                                    : "Next"}
-                            </Button>
+                            {activeStep === steps.length - 1 ? (
+                                <Button
+                                    onClick={handleSubmit}
+                                    disabled={loading}
+                                >
+                                    Submit
+                                </Button>
+                            ) : (
+                                <Button
+                                    onClick={handleNext}
+                                    disabled={!isStep1Complete()}
+                                >
+                                    Next
+                                </Button>
+                            )}
                         </Box>
                     </React.Fragment>
                 </Box>
@@ -119,4 +299,12 @@ const AddProjectPage = () => {
     );
 };
 
-export default AddProjectPage;
+const mapStateToProps = (state) => ({
+    loading: state.project.loading,
+});
+
+export default connect(mapStateToProps, {
+    createProject,
+    getAllProjects,
+    clearProject,
+})(AddProjectPage);

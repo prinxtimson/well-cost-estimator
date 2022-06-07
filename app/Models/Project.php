@@ -12,6 +12,7 @@ class Project extends Model
     protected $fillable = [
         'name',
         'description',
+        'client',
         'well_cost',
         'operating_time',
         'well_cost_summary'
@@ -25,5 +26,15 @@ class Project extends Model
     public function project_meta ()
     {
         return $this->hasMany(Projectmeta::class);
+    }
+
+    public function project_timeline ()
+    {
+        return $this->hasMany(ProjectTimeline::class);
+    }
+
+    public function project_cost ()
+    {
+        return $this->hasMany(ProjectCost::class);
     }
 }

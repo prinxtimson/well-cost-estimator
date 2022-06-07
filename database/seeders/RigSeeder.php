@@ -14,8 +14,8 @@ class RigSeeder extends Seeder
      */
     public function run()
     {
-        $path = storage_path() . './rigs.json';
-        $rigs = json_decode(\file_get_contents($path), true);
+        $path = storage_path() . '/rigs.json';
+        $rigs = json_decode(file_get_contents($path), true);
 
         foreach($rigs as $rig){
             Rig::create($rig);
