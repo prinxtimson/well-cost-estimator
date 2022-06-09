@@ -13,8 +13,9 @@ class ProjectCost extends Model
         'name',
         'sub_title',
         'unit',
-        'cost',
-        'quantity'
+        'unit_cost',
+        'quantity',
+        'total'
     ];
 
     public function project ()

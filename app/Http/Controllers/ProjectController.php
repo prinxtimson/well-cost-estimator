@@ -44,17 +44,16 @@ class ProjectController extends Controller
         $fields = $request->validate([
             'name' => 'required|string', 
             'description' => 'string',
-            'client' => 'required|string'
+            'client' => 'required|string',
+            'well_cost' => 'required',
+            'operating_time' => 'required'
         ]);
-
-        $fields['well_cost'] = '0.00';
-        $fields['operating_time'] = '0';
+        $timeline = $request->input('timeline');
+        $cost = $request->input('cost');
 
         $project = $user->projects()->create($fields);
 
-        $metas = $request->except(['name', 'description', 'client', 'timeline']);
-
-        $timeline = $request->input('timeline');
+        $metas = $request->except(['name', 'description', 'client', 'timeline', 'cost']);
 
         foreach ($metas as $key => $value) {
             # code...
@@ -65,13 +64,11 @@ class ProjectController extends Controller
         }
 
         foreach($timeline as $key => $value){
-            if(!isset($value['total'])){
-                $total = $value['rih'] + $value['drill'] + $value['circulate'] + $value['poh'] + $value['casing'] + $value['wh_work'];
-
-                $value['total'] = $total;
-            }
-            
             $project->project_timeline()->create($value);
+        }
+
+        foreach($cost as $key => $value){
+            $project->project_cost()->create($value);
         }
 
         return $project->load(['project_meta']);
@@ -85,7 +82,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        return Project::find($id)->load(['project_meta', 'project_timeline']);
+        return Project::find($id)->load(['project_meta', 'project_timeline', 'project_cost']);
     }
 
     /**

@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 const ProjectSummary = ({ project }) => {
-    // const { project_timeline } = project;
+    const { project_cost } = project;
     // const [timeline, setTimeline] = React.useState(0);
 
     // React.useEffect(() => {
@@ -122,7 +122,9 @@ const ProjectSummary = ({ project }) => {
                         <Typography>Operating Time (Days)</Typography>
                     </Grid>
                     <Grid item xs>
-                        <Typography>{project.operating_time}</Typography>
+                        <Typography>
+                            {Math.round(project.operating_time)}
+                        </Typography>
                     </Grid>
                 </Grid>
                 <Grid container>
@@ -130,7 +132,13 @@ const ProjectSummary = ({ project }) => {
                         <Typography>Operating Cost ($)</Typography>
                     </Grid>
                     <Grid item xs>
-                        <Typography>${project.well_cost}</Typography>
+                        <Typography>
+                            $
+                            {parseFloat(project.well_cost)
+                                .toFixed(2)
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                        </Typography>
                     </Grid>
                 </Grid>
             </Box>
@@ -148,7 +156,24 @@ const ProjectSummary = ({ project }) => {
                             </Typography>
                         </Grid>
                         <Grid item xs>
-                            <Typography>$0.00</Typography>
+                            <Typography>
+                                $
+                                {project_cost
+                                    .reduce((total, val) => {
+                                        if (
+                                            val.sub_title ===
+                                            "Site Survey & Rig Operations"
+                                        ) {
+                                            return (
+                                                total + parseFloat(val.total)
+                                            );
+                                        }
+                                        return total;
+                                    }, 0)
+                                    .toFixed(2)
+                                    .toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid container>
@@ -156,7 +181,24 @@ const ProjectSummary = ({ project }) => {
                             <Typography>Drilling Consumables</Typography>
                         </Grid>
                         <Grid item xs>
-                            <Typography>$0.00</Typography>
+                            <Typography>
+                                $
+                                {project_cost
+                                    .reduce((total, val) => {
+                                        if (
+                                            val.sub_title ===
+                                            "Drilling Consumables"
+                                        ) {
+                                            return (
+                                                total + parseFloat(val.total)
+                                            );
+                                        }
+                                        return total;
+                                    }, 0)
+                                    .toFixed(2)
+                                    .toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid container>
@@ -164,7 +206,24 @@ const ProjectSummary = ({ project }) => {
                             <Typography>Drilling Tangibles</Typography>
                         </Grid>
                         <Grid item xs>
-                            <Typography>$0.00</Typography>
+                            <Typography>
+                                $
+                                {project_cost
+                                    .reduce((total, val) => {
+                                        if (
+                                            val.sub_title ===
+                                            "Drilling Tangibles"
+                                        ) {
+                                            return (
+                                                total + parseFloat(val.total)
+                                            );
+                                        }
+                                        return total;
+                                    }, 0)
+                                    .toFixed(2)
+                                    .toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid container>
@@ -172,7 +231,24 @@ const ProjectSummary = ({ project }) => {
                             <Typography>Drilling Services</Typography>
                         </Grid>
                         <Grid item xs>
-                            <Typography>$0.00</Typography>
+                            <Typography>
+                                $
+                                {project_cost
+                                    .reduce((total, val) => {
+                                        if (
+                                            val.sub_title ===
+                                            "Drilling Services"
+                                        ) {
+                                            return (
+                                                total + parseFloat(val.total)
+                                            );
+                                        }
+                                        return total;
+                                    }, 0)
+                                    .toFixed(2)
+                                    .toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid container>
@@ -182,7 +258,24 @@ const ProjectSummary = ({ project }) => {
                             </Typography>
                         </Grid>
                         <Grid item xs>
-                            <Typography>$0.00</Typography>
+                            <Typography>
+                                $
+                                {project_cost
+                                    .reduce((total, val) => {
+                                        if (
+                                            val.sub_title ===
+                                            "Drilling Formation Evaluation"
+                                        ) {
+                                            return (
+                                                total + parseFloat(val.total)
+                                            );
+                                        }
+                                        return total;
+                                    }, 0)
+                                    .toFixed(2)
+                                    .toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid container>
@@ -190,7 +283,24 @@ const ProjectSummary = ({ project }) => {
                             <Typography>Drilling Logistics</Typography>
                         </Grid>
                         <Grid item xs>
-                            <Typography>$0.00</Typography>
+                            <Typography>
+                                $
+                                {project_cost
+                                    .reduce((total, val) => {
+                                        if (
+                                            val.sub_title ===
+                                            "Drilling Logistics"
+                                        ) {
+                                            return (
+                                                total + parseFloat(val.total)
+                                            );
+                                        }
+                                        return total;
+                                    }, 0)
+                                    .toFixed(2)
+                                    .toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid container>
@@ -200,7 +310,24 @@ const ProjectSummary = ({ project }) => {
                             </Typography>
                         </Grid>
                         <Grid item xs>
-                            <Typography>$0.00</Typography>
+                            <Typography>
+                                $
+                                {project_cost
+                                    .reduce((total, val) => {
+                                        if (
+                                            val.sub_title ===
+                                            "Drilling Personnel and Admin"
+                                        ) {
+                                            return (
+                                                total + parseFloat(val.total)
+                                            );
+                                        }
+                                        return total;
+                                    }, 0)
+                                    .toFixed(2)
+                                    .toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid container>
@@ -208,7 +335,20 @@ const ProjectSummary = ({ project }) => {
                             <Typography>Estimated Taxes</Typography>
                         </Grid>
                         <Grid item xs>
-                            <Typography>$0.00</Typography>
+                            <Typography>
+                                $
+                                {(
+                                    project_cost.reduce(
+                                        (total, val) =>
+                                            total + parseFloat(val.total),
+
+                                        0
+                                    ) * 0.05
+                                )
+                                    .toFixed(2)
+                                    .toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            </Typography>
                         </Grid>
                     </Grid>
                     <Grid container>
@@ -216,7 +356,41 @@ const ProjectSummary = ({ project }) => {
                             <Typography>Estimated WHT</Typography>
                         </Grid>
                         <Grid item xs>
-                            <Typography>$0.00</Typography>
+                            <Typography>
+                                $
+                                {(
+                                    parseFloat(
+                                        project_cost.find(
+                                            (val) =>
+                                                val.name === "Communications"
+                                        ).total
+                                    ) *
+                                        0.05 +
+                                    0.1 *
+                                        (parseFloat(
+                                            project_cost.find(
+                                                (val) =>
+                                                    val.name ===
+                                                    "Helicopter Services"
+                                            ).total
+                                        ) +
+                                            parseFloat(
+                                                project_cost.find(
+                                                    (val) =>
+                                                        val.name ===
+                                                        "Flight Charges"
+                                                ).total +
+                                                    project_cost.find(
+                                                        (val) =>
+                                                            val.name ===
+                                                            "Tickets"
+                                                    ).total
+                                            ))
+                                )
+                                    .toFixed(2)
+                                    .toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                            </Typography>
                         </Grid>
                     </Grid>
                 </Box>

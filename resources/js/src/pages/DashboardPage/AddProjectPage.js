@@ -19,6 +19,7 @@ import {
 } from "../../actions/project";
 import { useNavigate } from "react-router-dom";
 import { calcTimeline } from "../../utils/timeline";
+import { calCost } from "../../utils/cost";
 
 const steps = ["Step 1", "Step 2"];
 
@@ -210,7 +211,31 @@ const AddProjectPage = ({
 
     const handleSubmit = () => {
         const timeline = calcTimeline(data);
-        createProject({ ...data, timeline }, handleOnSuccessfull);
+        const cost = calCost(data, timeline);
+
+        const timeline_sub_total = timeline.reduce(
+            (total, val) => total + val.total,
+            0
+        );
+        const cost_sub_total = cost.reduce(
+            (total, val) => total + val.total,
+            0
+        );
+
+        const est_wht =
+            cost.find((val) => val.name === "Communications").total * 0.05 +
+            0.1 *
+                (cost.find((val) => val.name === "Helicopter Services").total +
+                    cost.find((val) => val.name === "Flight Charges").total +
+                    cost.find((val) => val.name === "Tickets").total);
+
+        const well_cost = cost_sub_total + cost_sub_total * 0.05 + est_wht;
+        const operating_time = timeline_sub_total + timeline_sub_total * 0.1;
+
+        createProject(
+            { ...data, operating_time, well_cost, timeline, cost },
+            handleOnSuccessfull
+        );
     };
 
     const handleOnSuccessfull = (id) => {
