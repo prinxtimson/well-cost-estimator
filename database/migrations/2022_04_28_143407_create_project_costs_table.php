@@ -20,8 +20,9 @@ class CreateProjectCostsTable extends Migration
             $table->string('sub_title');
             $table->string('name');
             $table->string('unit');
-            $table->string('cost');
-            $table->string('quantity')->nullable();
+            $table->string('unit_cost');
+            $table->string('quantity')->default(0);
+            $table->string('total')->default(0);
             $table->timestamps();
         });
     }

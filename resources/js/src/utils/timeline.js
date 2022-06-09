@@ -26,7 +26,7 @@ export const calcTimeline = (data) => {
             poh: 0,
             casing: 0,
             wh_work: 0,
-            total: rig_move_time || 0,
+            total: parseInt(rig_move_time) || 0,
         },
         {
             name: "Rig Up",
@@ -990,6 +990,19 @@ export const calcTimeline = (data) => {
             wh_work: 0,
         },
     ];
+
+    timeline = timeline.map((val) => {
+        if (!val.total) {
+            val["total"] =
+                val.rih +
+                val.drill +
+                val.casing +
+                val.circulate +
+                val.poh +
+                val.wh_work;
+        }
+        return val;
+    });
 
     return timeline;
 };
